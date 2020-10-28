@@ -1,0 +1,199 @@
+:root {
+    --background: black;
+    --separator: #4F4F4F;
+    --primary: #079DFD;
+    --secondary: #EA10D4;
+    --gradient: -webkit-linear-gradient(#079DFD, #EA10D4);
+    --font-family-sans-serif: 'Raleway', sans serif;
+}
+
+@font-face {
+    font-family: 'Raleway', sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+}
+
+body{
+    background-color: var(--background);
+}
+
+hr{
+    background-color: var(--separator);
+    margin-top: 5em;
+}
+
+li{
+    list-style: none;
+
+}
+
+li :hover{
+    text-decoration: none;
+    color: var(--secondary);
+}
+
+li a{
+    font-size: 1.2vw;
+    background: -webkit-linear-gradient(#079DFD, #EA10D4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+.space{
+    padding-right: 4em;
+}
+
+.navbar{
+    padding: 0.2em 0 0 1em;
+}
+.navbar-nav{
+    flex-direction: row;
+    justify-content: space-around;
+    padding-right: 0.3em;
+}
+
+.container{
+    margin: 0;
+    padding-right: 0;
+    max-width: 1408px;
+
+}
+
+.position{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.logo::before {
+    content: url("https://i.postimg.cc/vBrJVT2k/logoxxs.png");
+}
+
+.logo{
+    padding-top: 0.5em;
+}
+
+.calendar::before {
+    content: "Calendrier";
+}
+
+.top::before {
+    content: "Top";
+}
+
+li.nav-item.space-home{
+    display: none;
+}
+.discover::before {
+    content: "Explorer";
+}
+
+.connexion::before {
+    content: "Connexion";
+}
+
+@media screen and (min-width: 1400px){
+    li a{
+        font-size: 1.2vw;
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1399px){
+    li a{
+        font-size: 1.3vw;
+    }
+}
+
+@media screen and (min-width: 1050px) and (max-width: 1199px){
+
+    li a{
+        font-size: 1.4vw;
+    }
+
+}
+@media screen and (min-width: 993px) and (max-width: 1049px){
+
+    li a{
+        font-size: 1.6vw;
+    }
+
+}
+
+@media screen and (min-width: 850px) and (max-width: 992px){
+    .container{
+        max-width: 1200px;
+    }
+    li a{
+        font-size: 1.7vw;
+    }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 849px){
+    .container{
+        max-width: 1200px;
+    }
+    li a{
+        font-size: 2vw;
+    }
+
+}
+
+@media screen and (max-width: 767px){
+    .position{
+        top : auto;
+        bottom: 0;
+    }
+
+    .logo{
+        display: none;
+    }
+
+    li a{
+        font-size: 2.2vw;
+    }
+
+    hr{
+        display: none;
+    }
+    .nav{
+        width: 100%;
+        text-align: center;
+    }
+
+    .calendar::before {
+        content : url("https://i.postimg.cc/fWm31ycS/calendar-sm.png");
+    }
+
+    .top::before {
+        content: url("https://i.postimg.cc/g2DtsGSf/star-sm.png");
+    }
+
+    .space-home{
+        padding-right: 2.5em;
+    }
+    li.nav-item.space-home{
+        display: block;
+    }
+
+    .home::before {
+        content: url("https://i.postimg.cc/Fz40wL1G/home-sm-copie.png");
+    }
+    .discover::before {
+        content: url("https://i.postimg.cc/tJknfvKC/dicover-sm.png");
+    }
+
+    .connexion::before {
+        content: url("https://i.postimg.cc/kg0Gjd2v/user-sm.png");
+    }
+
+    .navbar-nav{
+        justify-content: center;
+    }
+
+    .space{
+        padding-right: 3em;
+    }
+
+
+}
