@@ -42,4 +42,3 @@ class TrackManager extends AbstractManager
         return $this->pdo->query("SELECT * FROM  $this->table  WHERE playlist_id= '$idPlaylist'")->fetchAll();
     }
 }
-

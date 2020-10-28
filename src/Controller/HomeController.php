@@ -31,10 +31,9 @@ class HomeController extends AbstractController
         $tracks = $trackManager->selectTracksByDay($playlist['id']);
 
         return $this->twig->render('Home/index.html.twig', [
-            'tracks'=> $tracks,
-            'playlist'=> $playlist,
+            'tracks' => $tracks,
+            'playlist' => $playlist,
 
         ]);
     }
 }
-

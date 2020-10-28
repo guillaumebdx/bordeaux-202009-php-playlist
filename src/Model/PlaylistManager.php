@@ -24,4 +24,4 @@ class PlaylistManager extends AbstractManager
 
         return $this->pdo->query("SELECT * FROM   $this->table  WHERE date = '$date'")->fetch();
     }
-    }
+}
