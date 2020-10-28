@@ -94,7 +94,7 @@ class ItemController extends AbstractController
                 'title' => $_POST['title'],
             ];
             $id = $itemManager->insert($item);
-            header('Location:/item/show/' . $id);
+            header('Location:/item/show/' .$id);
         }
 
         return $this->twig->render('Item/add.html.twig');
