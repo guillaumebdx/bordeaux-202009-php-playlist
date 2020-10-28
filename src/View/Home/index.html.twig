@@ -1,9 +1,6 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
-
-
         <nav class="navbar navbar-expand-lg bg-none position">
             <div class="container">
                 <div class="logo">
@@ -36,4 +33,9 @@
         </nav>
 
         <hr>
+        
+    <h1>Hello Wilder !</h1>
+    <h2>Playlist of the {{ playlist.date }}</h2>
+    <pre>{{ dump(tracks) }}</pre>
+    
 {% endblock %}
