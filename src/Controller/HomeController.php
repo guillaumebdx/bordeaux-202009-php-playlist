@@ -8,6 +8,9 @@
 
 namespace App\Controller;
 
+use App\Model\PlaylistManager;
+use App\Model\TrackManager;
+
 class HomeController extends AbstractController
 {
 
@@ -21,6 +24,17 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        return $this->twig->render('Home/index.html.twig');
+        $playlistManager = new PlaylistManager();
+        $today = new \DateTime();
+        $playlist = $playlistManager->selectPlaylistsByDay($today->format('Y-m-d'));
+        $trackManager = new TrackManager();
+        $tracks = $trackManager->selectTracksByDay($playlist['id']);
+
+        return $this->twig->render('Home/index.html.twig', [
+            'tracks'=> $tracks,
+            'playlist'=> $playlist,
+
+        ]);
     }
 }
+

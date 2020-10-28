@@ -6,6 +6,11 @@ namespace App\Model;
 
 class TrackManager extends AbstractManager
 {
+
+    /**
+     *
+     */
+
     const TABLE = 'track';
 
     /**
@@ -15,6 +20,7 @@ class TrackManager extends AbstractManager
     {
         parent::__construct(self::TABLE);
     }
+
 
     public function insert(array $track): int
     {
@@ -29,4 +35,11 @@ class TrackManager extends AbstractManager
             return (int)$this->pdo->lastInsertId();
         }
     }
+
+
+    public function selectTracksByDay($idPlaylist)
+    {
+        return $this->pdo->query("SELECT * FROM  $this->table  WHERE playlist_id= '$idPlaylist'")->fetchAll();
+    }
 }
+
