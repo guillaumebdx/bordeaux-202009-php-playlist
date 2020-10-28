@@ -20,7 +20,8 @@ class TrackManager extends AbstractManager
     {
         // prepared request
 
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (title, artist, url) VALUES (:title, :artist, :url)");
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (title, artist, url)
+         VALUES (:title, :artist, :url)");
         $statement->bindValue(':title', $track['title'], \PDO::PARAM_STR);
         $statement->bindValue(':artist', $track['artist'], \PDO::PARAM_STR);
         $statement->bindValue(':url', $track['url'], \PDO::PARAM_STR);

@@ -31,10 +31,8 @@ class ItemController extends AbstractController
     {
         $itemManager = new ItemManager();
         $items = $itemManager->selectAll();
-
         return $this->twig->render('Item/index.html.twig', ['items' => $items]);
     }
-
 
     /**
      * Display item informations specified by $id
@@ -94,7 +92,7 @@ class ItemController extends AbstractController
                 'title' => $_POST['title'],
             ];
             $id = $itemManager->insert($item);
-            header('Location:/item/show/' .$id);
+            header('Location:/item/show/' . $id);
         }
 
         return $this->twig->render('Item/add.html.twig');
