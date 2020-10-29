@@ -24,4 +24,15 @@ class PlaylistManager extends AbstractManager
 
         return $this->pdo->query("SELECT * FROM   $this->table  WHERE date = '$date'")->fetch();
     }
+
+
+    public function createPlaylist($day)
+    {
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (`date`) VALUES (:day)");
+        $statement->bindValue(':day', $day, \PDO::PARAM_STR);
+
+        if ($statement->execute()) {
+            return (int)$this->pdo->lastInsertId();
+        }
+    }
 }
