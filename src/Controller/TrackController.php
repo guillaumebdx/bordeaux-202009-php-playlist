@@ -30,6 +30,10 @@ class TrackController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $playlistManager = new PlaylistManager();
 
+            $url = $_POST['url'];
+            $urlPreClean = explode("watch?v=", $url);
+            $urlClean = array_pop($urlPreClean);
+
                 $today = new \DateTime();
                 $todayFormat = $today->format('Y-m-d');
                 $playlist = $playlistManager->selectPlaylistsByDay($todayFormat);
@@ -40,7 +44,7 @@ class TrackController extends AbstractController
                 $track = [
                     'title' => $_POST['title'],
                     'artist' => $_POST['artist'],
-                    'url' => $_POST['url'],
+                    'url' => $urlClean,
                     'playlist_id' => $playlist ? $playlist['id'] : $newPlaylistId,
                 ];
                 $trackManager->insert($track);
