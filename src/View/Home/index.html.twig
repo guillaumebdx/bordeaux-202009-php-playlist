@@ -1,5 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Hello Wilder !</h1>
+
+    <h1>Playlist of the {{ playlist.date }}</h1>
+    <pre>{{ dump(tracks) }}</pre>
+    
+
 {% endblock %}
