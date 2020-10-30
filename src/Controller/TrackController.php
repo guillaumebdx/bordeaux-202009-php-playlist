@@ -32,7 +32,7 @@ class TrackController extends AbstractController
 
             $url = $_POST['url'];
             $urlPreClean = explode("watch?v=", $url);
-            $urlClean = array_pop($urlPreClean);
+            $urlClean = substr(array_pop($urlPreClean),0,11);
 
                 $today = new \DateTime();
                 $todayFormat = $today->format('Y-m-d');
