@@ -1,0 +1,38 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <div class="dayPlaylistTitle"><h2>Playlist of the {{ playlist.date }}</h2></div>
+
+
+    {% if tracks == false %}
+        <p>Please add today's playlist.</p>
+
+    {% else %}
+        <div class="small_container">
+
+            <div class="container-card">
+                {% for track in tracks %}
+                    <div class="card">
+                        <div class="vidBx" data-text={{ track.artist }}>
+                            <iframe id="video" src="https://www.youtube.com/embed/{{ track.url }}?enablejsapi=1&html5=1.?modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+
+                        <div class="content">
+                            <div>
+                                <h3>{{ track.title }}</h3>
+                                <p>The name of the someone who added the song, the like button and its counter,</p>
+
+                                <div class="buttons">
+                                    <button class="button" id="play-button"><img src="/assets/images/music-play.png" width="30px" alt=""></button>
+                                    <button class="button" id="pause-button"><img src="/assets/images/music-pause.png" width="30px" alt=""></button>
+                                    <button class="button" id="stop-button"><img src="/assets/images/music-stop.png" width="30px" alt=""></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}
