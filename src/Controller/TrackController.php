@@ -50,6 +50,6 @@ class TrackController extends AbstractController
                 $trackManager->insert($track);
                 header('Location:/Home/index/');
         }
-            return $this->twig->render('/Home/form.html.twig');
+            return $this->twig->render('/Home/add.html.twig');
     }
 }
