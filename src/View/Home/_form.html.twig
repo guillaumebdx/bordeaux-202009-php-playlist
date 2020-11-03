@@ -1,0 +1,25 @@
+<form method="POST" >
+    <input type="hidden" value="{{ track.id }}" name="id">
+    <div class="container-form">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="title" class="mt-5">Titre de la chanson</label><br>
+                <input class="w-100" type="text" value="{{ track.title }}" name="title" id="title" placeholder="Titre de la chanson" required>
+            </div>
+            <div class="col-md-6">
+                <label for="artist" class="mt-5">Nom de l'artiste</label><br>
+                <input class="w-100" type="text" value="{{ track.artist }}" name="artist" id="artist" placeholder="Nom de l'artiste" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label for="url" class="w-100 mt-5">Url de la chanson</label><br>
+                <input class="w-100" type="url" value="{{ track.artist }}" name="url" placeholder="Url" required>
+            </div>
+        </div>
+        <button class="btn-form" type="submit" style="border: 0; background: transparent">
+            <img src="/assets/images/Bouton-Envoyer.PNG" alt="submit" />
+        </button>
+    </div>
+</form>
+

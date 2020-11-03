@@ -1,5 +1,5 @@
 :root {
-    --background: black;
+    --background: #000000;
     --separator: #4F4F4F;
     --primary: #079DFD;
     --secondary: #EA10D4;
@@ -90,6 +90,41 @@ li.nav-item.space-home{
 
 .connexion::before {
     content: "Connexion";
+}
+h2{
+    text-align: center;
+    background: -webkit-linear-gradient(#079DFD, #EA10D4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+label[for=title], label[for=artist], label[for=url]{
+    color: white;
+}
+
+form{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-form, .col-md-5 .col-md-12{
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.btn-form{
+    display: block;
+    margin-top: 3em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input{
+    background-color: black;
+    border-style: none;
+    border-bottom: var(--separator) solid 1px;
+    font-family: 'Raleway', sans-serif;
 }
 
 @media screen and (min-width: 1400px){
@@ -194,6 +229,5 @@ li.nav-item.space-home{
     .space{
         padding-right: 3em;
     }
-
 
 }
