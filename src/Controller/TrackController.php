@@ -48,4 +48,16 @@ class TrackController extends AbstractController
         }
             return $this->twig->render('/Home/form.html.twig');
     }
+
+    public function top()
+    {
+        $top = new TrackManager();
+        $tracks = $top->selectTracksLike();
+        return $this->twig->render('/Home/top.html.twig',[
+            'tracks'=>$tracks
+        ]);
+
+
+    }
 }
+

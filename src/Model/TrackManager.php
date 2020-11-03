@@ -37,9 +37,13 @@ class TrackManager extends AbstractManager
         }
     }
 
-
     public function selectTracksByDay($idPlaylist)
     {
         return $this->pdo->query("SELECT * FROM  $this->table  WHERE playlist_id= '$idPlaylist'")->fetchAll();
+    }
+
+    public function selectTracksLike()
+    {
+        return $this->pdo->query("SELECT * FROM  $this->table  ORDER BY nblike DESC LIMIT 10")->fetchAll();
     }
 }
