@@ -1,10 +1,8 @@
 :root {
-
-    --background: #191919;
+    --background: #000000;
     --separator: #4F4F4F;
     --primary: #079DFD;
     --secondary: #EA10D4;
-    --blue:#00fffa;
     --gradient: -webkit-linear-gradient(#079DFD, #EA10D4);
     --font-family-sans-serif: 'Raleway', sans serif;
 }
@@ -20,20 +18,22 @@ body{
 
 hr{
     background-color: var(--separator);
+    margin-top: 5em;
 }
 
-.nav li{
+li{
     list-style: none;
+
 }
 
-.nav li :hover{
+li :hover{
     text-decoration: none;
     color: var(--secondary);
 }
 
-.nav li a{
+li a{
     font-size: 1.2vw;
-    background: var(--blue);
+    background: -webkit-linear-gradient(#079DFD, #EA10D4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -48,14 +48,17 @@ hr{
 .navbar-nav{
     flex-direction: row;
     justify-content: space-around;
+    padding-right: 0.3em;
 }
 
-nav .container{
+.container{
     margin: 0;
+    padding-right: 0;
     max-width: 1408px;
+
 }
 
-nav .position{
+.position{
     position: fixed;
     top: 0;
     right: 0;
@@ -63,10 +66,12 @@ nav .position{
 }
 
 .logo::before {
-    content: url("https://i.postimg.cc/Z5P8ZgS1/bcb-small.png");
-    /* LOGO PINK/BLUE -- url("https://i.postimg.cc/vBrJVT2k/logoxxs.png");*/
+    content: url("https://i.postimg.cc/vBrJVT2k/logoxxs.png");
 }
 
+.logo{
+    padding-top: 0.5em;
+}
 
 .calendar::before {
     content: "Calendrier";
@@ -123,54 +128,54 @@ input{
 }
 
 @media screen and (min-width: 1400px){
-    nav li a{
+    li a{
         font-size: 1.2vw;
     }
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1399px){
-    nav li a{
+    li a{
         font-size: 1.3vw;
     }
 }
 
 @media screen and (min-width: 1050px) and (max-width: 1199px){
 
-    nav li a{
+    li a{
         font-size: 1.4vw;
     }
 
 }
 @media screen and (min-width: 993px) and (max-width: 1049px){
 
-    nav li a{
+    li a{
         font-size: 1.6vw;
     }
 
 }
 
 @media screen and (min-width: 850px) and (max-width: 992px){
-    nav .container{
+    .container{
         max-width: 1200px;
     }
-    nav li a{
+    li a{
         font-size: 1.7vw;
     }
 
 }
 
 @media screen and (min-width: 768px) and (max-width: 849px){
-    nav .container{
+    .container{
         max-width: 1200px;
     }
-    nav li a{
+    li a{
         font-size: 2vw;
     }
 
 }
 
 @media screen and (max-width: 767px){
-    nav .position{
+    .position{
         top : auto;
         bottom: 0;
     }
@@ -179,7 +184,7 @@ input{
         display: none;
     }
 
-    nav li a{
+    li a{
         font-size: 2.2vw;
     }
 
