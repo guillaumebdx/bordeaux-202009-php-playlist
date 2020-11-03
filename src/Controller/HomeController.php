@@ -22,6 +22,8 @@ class HomeController extends AbstractController
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
+
+
     public function index()
     {
         $playlistManager = new PlaylistManager();
