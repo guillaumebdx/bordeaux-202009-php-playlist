@@ -4,10 +4,7 @@
     <div class="dayPlaylistTitle"><h2>Playlist of the {{ playlist.date }}</h2></div>
 
 
-    {% if tracks == false %}
-        <p>Please add today's playlist.</p>
 
-    {% else %}
         <div class="small_container">
 
             <div class="container-card">
@@ -30,9 +27,11 @@
                             </div>
                         </div>
                     </div>
+                    {% else %}
+                        <h1>FUCK </h1>
                 {% endfor %}
             </div>
         </div>
-    {% endif %}
+
 
 {% endblock %}
