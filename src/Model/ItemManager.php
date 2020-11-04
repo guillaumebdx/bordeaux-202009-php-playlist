@@ -37,7 +37,6 @@ class ItemManager extends AbstractManager
         // prepared request
         $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (`title`) VALUES (:title)");
         $statement->bindValue('title', $item['title'], \PDO::PARAM_STR);
-
         if ($statement->execute()) {
             return (int)$this->pdo->lastInsertId();
         }
