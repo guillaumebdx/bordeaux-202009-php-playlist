@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h2>Connecte-toi</h2>
+    <form method="POST" >
+        <div class="container-sm">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="pseudo" class="mt-5">Ton pseudo</label><br>
+                    <input class="w-100" type="text" value="{{ user.pseudo }}" name="pseudo" id="pseudo" placeholder="Shakira" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="password" class="mt-5">Ton mot de passe</label><br>
+                    <input class="w-100" type="password" value="{{ user.password }}" name="password" id="password" placeholder="*****" required>
+                </div>
+            </div>
+            <button class="btn-form" type="submit" style="border: 0; background: transparent">
+                <img src="/assets/images/Bouton-Envoyer.PNG" alt="submit" />
+            </button>
+        </div>
+    </form>
+{% endblock %}
