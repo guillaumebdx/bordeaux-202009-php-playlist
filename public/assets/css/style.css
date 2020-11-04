@@ -50,12 +50,7 @@ nav li a{
     justify-content: space-around;
 }
 
-nav .container{
-    margin: 0;
-    padding-right: 0;
-    max-width: 1408px;
 
-}
 
 .position{
     position: fixed;
@@ -87,7 +82,7 @@ li.nav-item.space-home{
 .connexion::before {
     content: "Connexion";
 }
-h2{
+h2 {
     text-align: center;
     background: -webkit-linear-gradient(#079DFD, #EA10D4);
     -webkit-background-clip: text;
@@ -117,10 +112,12 @@ form{
 }
 
 input{
-    background-color: black;
+    background-color: var(--background);
     border-style: none;
     border-bottom: var(--separator) solid 1px;
     font-family: 'Raleway', sans-serif;
+    color: white;
+    outline: none;
 }
 
 @media screen and (min-width: 1400px){
@@ -240,7 +237,7 @@ input{
     background: linear-gradient(rgb(18, 17, 17), #252552, #222, #22223f, #222);
     min-height: 100vh;
 }
-
+/*
 body h2{
     margin-top: -60px;
 }
@@ -251,7 +248,7 @@ body h2{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
+*/
 .container-card{
     position: relative;
     width: 1200px;
@@ -306,6 +303,11 @@ body h2{
 
 iframe{
     width: 100%;
+    height: 100%;
+}
+
+.card-top .vidBx iframe{
+    width: auto;
     height: 100%;
 }
 
@@ -400,6 +402,7 @@ iframe{
 #stop-button {
     margin-left: 15px;
 }
+
 @media (max-width: 992px)
 {
     .content-card{
