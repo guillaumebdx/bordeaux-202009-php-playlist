@@ -30,6 +30,10 @@ class TrackController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $playlistManager = new PlaylistManager();
 
+            $url = $_POST['url'];
+            $urlPreClean = explode("watch?v=", $url);
+            $urlClean = substr(array_pop($urlPreClean),0,11);
+
                 $today = new \DateTime();
                 $todayFormat = $today->format('Y-m-d');
                 $playlist = $playlistManager->selectPlaylistsByDay($todayFormat);
@@ -40,12 +44,24 @@ class TrackController extends AbstractController
                 $track = [
                     'title' => $_POST['title'],
                     'artist' => $_POST['artist'],
-                    'url' => $_POST['url'],
+                    'url' => $urlClean,
                     'playlist_id' => $playlist ? $playlist['id'] : $newPlaylistId,
                 ];
                 $trackManager->insert($track);
                 header('Location:/Home/index/');
         }
-            return $this->twig->render('/Home/form.html.twig');
+            return $this->twig->render('/Home/add.html.twig');
+    }
+
+    public function top()
+    {
+        $top = new TrackManager();
+        $tracks = $top->selectTracksLike();
+        return $this->twig->render('/Home/top.html.twig',[
+            'tracks'=>$tracks
+        ]);
+
+
     }
 }
+
