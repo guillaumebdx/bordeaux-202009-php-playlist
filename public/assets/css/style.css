@@ -231,11 +231,6 @@ input{
         padding-right: 3em;
     }
 }
-
-
-
-
-/*
 .small_container{
 
     display: flex;
@@ -294,7 +289,7 @@ body h2{
     left: -80px;
     top: calc(50% - 75px);
     transition: 0.5s ease-in-out;
-    /*background: #FF0057;
+    background: #FF0057;
 }
 .container-card .card .vidBx:before {
     content: attr(data-text);
@@ -451,4 +446,3 @@ iframe{
         width: 100%;
     }
 }
-*/
