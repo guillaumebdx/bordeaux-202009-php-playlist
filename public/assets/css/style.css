@@ -241,12 +241,12 @@ input{
     min-height: 100vh;
 }
 
-body h2{
+body h3{
     margin-top: -60px;
 }
-.dayPlaylistTitle h2{
+.dayPlaylistTitle h3{
     margin-left: 20px;
-    font-size: 2.8vw;
+    font-size: 2.3vw;
     background: -webkit-linear-gradient(#079DFD, #EA10D4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -330,7 +330,7 @@ iframe{
     right: 0;
     width: calc(100% - 75px);
     height: 100%;
-    padding: 20px;
+    padding: 40px 20px 0 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -341,8 +341,8 @@ iframe{
 }
 .container-card .card .content a{
     display: inline-block;
-    margin-top: 10px;
-    padding: 5px 10px;
+    margin-top: 15px;
+    padding: 5px 20px;
     background: #333;
     text-decoration: none;
     color: #FFF;
