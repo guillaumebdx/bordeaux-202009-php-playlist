@@ -1,8 +1,11 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h2>Connecte-toi</h2>
-    <form method="POST" >
+    <h2>Connectes-toi</h2>
+    <div>
+        <p>Si tu n'es pas inscrit, <a href="/User/register">viens-ici</a> </p>
+    </div>
+    <form action="/User/check" method="post" >
         <div class="container-sm">
             <div class="row">
                 <div class="col-md-6">
