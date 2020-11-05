@@ -4,6 +4,7 @@
 {% block content %}
 
     {% for track in tracks %}
+
         <div class="card-top">
             <div class="vidBx" data-text={{ track.artist }}>
                 <iframe id="video" src="https://www.youtube.com/embed/{{ track.url }}?enablejsapi=1&html5=1.?modestbranding=1" rameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

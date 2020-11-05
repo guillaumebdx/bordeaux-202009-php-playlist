@@ -13,51 +13,50 @@
     src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
 }
 
-body{
+body {
     background-color: var(--background);
 }
 
-hr{
+hr {
     background-color: var(--separator);
     margin-top: 6em;
 
 }
 
-nav li{
+nav li {
     list-style: none;
 
 }
 
-nav li :hover{
+nav li :hover {
     text-decoration: none;
     color: var(--secondary);
 }
 
-nav li a{
+nav li a {
     font-size: 1.2vw;
     color: var(--blue);
 
 }
-.space{
+.space {
     padding-right: 4em;
 }
 
-.navbar{
+.navbar {
     padding: 0.2em 0 0 1em;
 }
-.navbar-nav{
+.navbar-nav {
     flex-direction: row;
     justify-content: space-around;
 }
 
-nav .container{
+nav .container {
     margin: 0;
     padding-right: 0;
     max-width: 1408px;
-
 }
 
-.position{
+.position {
     position: fixed;
     top: 0;
     right: 0;
@@ -77,7 +76,7 @@ nav .container{
     content: "Top";
 }
 
-li.nav-item.space-home{
+li.nav-item.space-home {
     display: none;
 }
 .discover::before {
@@ -87,40 +86,51 @@ li.nav-item.space-home{
 .connexion::before {
     content: "Connexion";
 }
-h2{
+
+h2,
+h4
+{
     text-align: center;
     background: -webkit-linear-gradient(#079DFD, #EA10D4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-label[for=title], label[for=artist], label[for=url]{
+label[for=title],
+label[for=artist],
+label[for=url],
+label[for=pseudo],
+label[for=password],
+label[for=email]
+{
     color: white;
 }
 
-form{
+form {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.container-form, .col-md-5 .col-md-12{
+.container-form, .col-md-5 .col-md-12 {
     margin-left: 0;
     padding-left: 0;
 }
 
-.btn-form{
+.btn-form {
     display: block;
     margin-top: 3em;
     margin-left: auto;
     margin-right: auto;
 }
 
-input{
-    background-color: black;
+input {
+    background-color: var(--background);
     border-style: none;
     border-bottom: var(--separator) solid 1px;
     font-family: 'Raleway', sans-serif;
+    color: white;
+    outline: none;
 }
 
 @media screen and (min-width: 1400px){
@@ -241,7 +251,10 @@ input{
     min-height: 100vh;
 }
 
-body h3{
+
+/*
+body h2{
+>>>>>>> db54a452eb13b5f227622d3d783be1ca1d21d2e7
     margin-top: -60px;
 }
 .dayPlaylistTitle h3{
@@ -251,7 +264,7 @@ body h3{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
+*/
 .container-card{
     position: relative;
     width: 1200px;
@@ -306,6 +319,11 @@ body h3{
 
 iframe{
     width: 100%;
+    height: 100%;
+}
+
+.card-top .vidBx iframe{
+    width: auto;
     height: 100%;
 }
 
@@ -400,6 +418,7 @@ iframe{
 #stop-button {
     margin-left: 15px;
 }
+
 @media (max-width: 992px)
 {
     .content-card{
