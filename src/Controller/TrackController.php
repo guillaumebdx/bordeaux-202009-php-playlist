@@ -32,7 +32,7 @@ class TrackController extends AbstractController
 
             $url = $_POST['url'];
             $urlPreClean = explode("watch?v=", $url);
-            $urlClean = substr(array_pop($urlPreClean),0,11);
+            $urlClean = substr(array_pop($urlPreClean), 0, 11);
 
                 $today = new \DateTime();
                 $todayFormat = $today->format('Y-m-d');
@@ -57,11 +57,36 @@ class TrackController extends AbstractController
     {
         $top = new TrackManager();
         $tracks = $top->selectTracksLike();
-        return $this->twig->render('/Home/top.html.twig',[
-            'tracks'=>$tracks
+        return $this->twig->render('/Home/top.html.twig', [
+            'tracks' => $tracks
         ]);
+    }
 
+    public function addLike($trackId)
+    {
+        $trackManager = new TrackManager();
+        $track = $trackManager->selectOneById($trackId);
+        $nbLikeAfterClick = $track['nblike'] + 1;
+        $trackManager->addLike($trackId, $nbLikeAfterClick);
+        header('Location: /');
+    }
 
+    public function showLike($trackId)
+    {
+        $trackManager = new TrackManager();
+        $trackId = $_POST['id'];
+        $nbLike = $trackManager->selectOneById($trackId);
+    }
+
+    public function dislike($trackId)
+    {
+        $trackManager = new TrackManager();
+        $track = $trackManager->selectOneById($trackId);
+        $nbLikeAfterClick = $track['nblike'] - 1;
+        if ($nbLikeAfterClick < 0) {
+            $nbLikeAfterClick = 0;
+        }
+        $trackManager->dislike($trackId, $nbLikeAfterClick);
+        header('Location: /');
     }
 }
-

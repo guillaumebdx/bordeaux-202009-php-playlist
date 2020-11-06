@@ -44,6 +44,10 @@ nav li a {
 
 .navbar {
     padding: 0.2em 0 0 1em;
+    background-color: var(--background);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 }
 .navbar-nav {
     flex-direction: row;
@@ -117,11 +121,26 @@ form {
     padding-left: 0;
 }
 
-.btn-form {
-    display: block;
-    margin-top: 3em;
-    margin-left: auto;
-    margin-right: auto;
+.btn-grad {background-image: linear-gradient(to right, #fc00ff 0%, #00dbde  51%, #fc00ff  100%)}
+.btn-grad {
+    display: flex;
+    justify-content: center;
+    padding: 7px 70px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    border-radius: 50px;
+    margin-top: 6em;
+}
+
+.btn-grad:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
 }
 
 input {
@@ -129,14 +148,20 @@ input {
     border-style: none;
     border-bottom: var(--separator) solid 1px;
     font-family: 'Raleway', sans-serif;
-    color: white;
     outline: none;
+    color: white;
+}
+
+button:active .btn-grad {
+    outline: none;
+    border: none;
+
 }
 .video{
     font-family: 'Raleway', sans-serif;
     color: var(--blue);
-
 }
+
 @media screen and (min-width: 1400px){
     nav li a{
         font-size: 1.2vw;
@@ -227,6 +252,7 @@ input {
 
     .home::before {
         content: url("https://i.postimg.cc/Fz40wL1G/home-sm-copie.png");
+
     }
     .discover::before {
         content: url("https://i.postimg.cc/tJknfvKC/dicover-sm.png");
@@ -250,10 +276,10 @@ input {
     justify-content: center;
     align-items: center;
     background: linear-gradient(rgb(18, 17, 17), #252552, #222, #22223f, #222);
-    min-height: 100vh;
+    min-height: 50vh;
 }
 body h2{
-    margin-top: -60px;
+    margin-top: 60px;
 }
 .dayPlaylistTitle h3{
     margin-left: 20px;
@@ -263,6 +289,10 @@ body h2{
     -webkit-text-fill-color: transparent;
 }
 
+.like-dislike-alignement{
+    display: flex;
+    flex-direction: row;
+}
 .container-card{
     position: relative;
     width: 1200px;
