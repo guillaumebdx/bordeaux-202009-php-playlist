@@ -278,10 +278,16 @@ button:active .btn-grad {
     background: linear-gradient(rgb(18, 17, 17), #252552, #222, #22223f, #222);
     min-height: 50vh;
 }
+
+/*body h2{
+    margin-top: -60px;
+}*/
+
 body h2{
     margin-top: 60px;
 }
 .dayPlaylistTitle h3{
+
     margin-left: 20px;
     font-size: 2.3vw;
     background: -webkit-linear-gradient(#079DFD, #EA10D4);
@@ -393,10 +399,14 @@ iframe{
     text-decoration: none;
     color: #FFF;
 }
+.title-card{
+    font-size: 2em;
+    font-family: 'Raleway', sans-serif ;
 
+}
 .buttons {
     position: relative;
-    margin: 0 auto 20px auto;
+    margin: 2em auto 20px auto;
     padding: 20px;
     float: left;
     display: block;

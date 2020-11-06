@@ -1,7 +1,8 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div class="dayPlaylistTitle"><h3>Playlist of the {{ playlist.date }}</h3></div>
+
+    <div class="dayPlaylistTitle text-white"><h1>Playlist du {{ playlist.date }}</h1></div>
 
         <div class="small_container">
 
@@ -14,8 +15,9 @@
 
                         <div class="content">
                             <div>
-                                <h3>{{ track.title }}</h3>
-                                <p>The name of the someone who added the song, the like button and its counter,</p>
+
+                                <div class="title-card">{{ track.title }} - {{ track.artist }}</div>
+                                <!-- TODO Taf de Audrey front -->
 
                                 <div class="like-dislike-alignement">
                                 <div >
@@ -38,6 +40,7 @@
 
 
                             <div class="buttons">
+
                                     <button class="button" id="play-button"><img src="/assets/images/music-play.png" width="30px" alt=""></button>
                                     <button class="button" id="pause-button"><img src="/assets/images/music-pause.png" width="30px" alt=""></button>
                                     <button class="button" id="stop-button"><img src="/assets/images/music-stop.png" width="30px" alt=""></button>
@@ -46,7 +49,7 @@
                         </div>
                     </div>
                     {% else %}
-                        <h1>Il n'y a pas encore de musique dans la playlist ajoute en une!</h1>
+                        <h1 class="text-white">Il n'y a pas encore de musique dans la {{ playlist.date }} ajoute en une!</h1>
                 {% endfor %}
             </div>
         </div>
