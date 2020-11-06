@@ -44,6 +44,10 @@ nav li a{
 
 .navbar{
     padding: 0.2em 0 0 1em;
+    background-color: var(--background);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 }
 .navbar-nav{
     flex-direction: row;
@@ -109,11 +113,26 @@ form{
     padding-left: 0;
 }
 
-.btn-form{
+
+.btn-grad {background-image: linear-gradient(to right, #fc00ff 0%, #00dbde  51%, #fc00ff  100%)}
+.btn-grad {
+    padding: 7px 70px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    border-radius: 50px;
     display: block;
-    margin-top: 3em;
-    margin-left: auto;
-    margin-right: auto;
+    border: none;
+}
+
+.btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
 }
 
 input{
@@ -121,7 +140,15 @@ input{
     border-style: none;
     border-bottom: var(--separator) solid 1px;
     font-family: 'Raleway', sans-serif;
+    outline: none;
 }
+
+button:active {
+    outline: none;
+    border: none;
+}
+
+
 
 @media screen and (min-width: 1400px){
     nav li a{
@@ -213,6 +240,7 @@ input{
 
     .home::before {
         content: url("https://i.postimg.cc/Fz40wL1G/home-sm-copie.png");
+
     }
     .discover::before {
         content: url("https://i.postimg.cc/tJknfvKC/dicover-sm.png");
