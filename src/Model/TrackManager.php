@@ -64,5 +64,4 @@ class TrackManager extends AbstractManager
     {
         return $this->pdo->query("SELECT nblike FROM  $this->table  WHERE id = $trackId ")->fetch();
     }
-
 }
