@@ -1,8 +1,9 @@
 :root {
-    --background: black;
+    --background: #191919;
     --separator: #4F4F4F;
     --primary: #079DFD;
     --secondary: #EA10D4;
+    --blue:#00fffa;
     --gradient: -webkit-linear-gradient(#079DFD, #EA10D4);
     --font-family-sans-serif: 'Raleway', sans serif;
 }
@@ -12,53 +13,54 @@
     src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
 }
 
-body{
+body {
     background-color: var(--background);
 }
 
-hr{
+hr {
     background-color: var(--separator);
-    margin-top: 5em;
+    margin-top: 6em;
+
 }
 
-li{
+nav li {
     list-style: none;
 
 }
 
-li :hover{
+nav li :hover {
     text-decoration: none;
     color: var(--secondary);
 }
 
-li a{
+nav li a {
     font-size: 1.2vw;
-    background: -webkit-linear-gradient(#079DFD, #EA10D4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--blue);
 
 }
-.space{
+.space {
     padding-right: 4em;
 }
 
-.navbar{
+.navbar {
     padding: 0.2em 0 0 1em;
+    background-color: var(--background);
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 }
-.navbar-nav{
+.navbar-nav {
     flex-direction: row;
     justify-content: space-around;
-    padding-right: 0.3em;
 }
 
-.container{
+nav .container {
     margin: 0;
     padding-right: 0;
     max-width: 1408px;
-
 }
 
-.position{
+.position {
     position: fixed;
     top: 0;
     right: 0;
@@ -66,11 +68,8 @@ li a{
 }
 
 .logo::before {
-    content: url("https://i.postimg.cc/vBrJVT2k/logoxxs.png");
-}
-
-.logo{
-    padding-top: 0.5em;
+    content: url("https://i.postimg.cc/Z5P8ZgS1/bcb-small.png");
+            /* LOGO PINK/BLUE url("https://i.postimg.cc/vBrJVT2k/logoxxs.png");*/
 }
 
 .calendar::before {
@@ -81,7 +80,7 @@ li a{
     content: "Top";
 }
 
-li.nav-item.space-home{
+li.nav-item.space-home {
     display: none;
 }
 .discover::before {
@@ -92,48 +91,119 @@ li.nav-item.space-home{
     content: "Connexion";
 }
 
+h2,
+h4
+{
+    text-align: center;
+    background: -webkit-linear-gradient(#079DFD, #EA10D4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+label[for=title],
+label[for=artist],
+label[for=url],
+label[for=pseudo],
+label[for=password],
+label[for=email]
+{
+    color: white;
+}
+
+form {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-form, .col-md-5 .col-md-12 {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.btn-grad {background-image: linear-gradient(to right, #fc00ff 0%, #00dbde  51%, #fc00ff  100%)}
+.btn-grad {
+    display: flex;
+    justify-content: center;
+    padding: 7px 70px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    border-radius: 50px;
+    margin-top: 6em;
+}
+
+.btn-grad:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+input {
+    background-color: var(--background);
+    border-style: none;
+    border-bottom: var(--separator) solid 1px;
+    font-family: 'Raleway', sans-serif;
+    outline: none;
+    color: white;
+}
+
+button:active .btn-grad {
+    outline: none;
+    border: none;
+
+}
+.video{
+    font-family: 'Raleway', sans-serif;
+    color: var(--blue);
+}
+
 @media screen and (min-width: 1400px){
-    li a{
+    nav li a{
         font-size: 1.2vw;
     }
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1399px){
-    li a{
+    nav li a{
         font-size: 1.3vw;
     }
 }
 
 @media screen and (min-width: 1050px) and (max-width: 1199px){
 
-    li a{
+    nav li a{
         font-size: 1.4vw;
     }
 
 }
 @media screen and (min-width: 993px) and (max-width: 1049px){
 
-    li a{
+    nav li a{
         font-size: 1.6vw;
     }
 
 }
 
 @media screen and (min-width: 850px) and (max-width: 992px){
-    .container{
+    nav .container{
         max-width: 1200px;
     }
-    li a{
+    nav li a{
         font-size: 1.7vw;
     }
 
 }
 
 @media screen and (min-width: 768px) and (max-width: 849px){
-    .container{
+    nav .container{
         max-width: 1200px;
     }
-    li a{
+    nav li a{
         font-size: 2vw;
     }
 
@@ -145,11 +215,15 @@ li.nav-item.space-home{
         bottom: 0;
     }
 
+    nav {
+        background-color: var(--background);
+        border-top: 1px solid var(--separator);
+    }
     .logo{
         display: none;
     }
 
-    li a{
+    nav li a{
         font-size: 2.2vw;
     }
 
@@ -178,6 +252,7 @@ li.nav-item.space-home{
 
     .home::before {
         content: url("https://i.postimg.cc/Fz40wL1G/home-sm-copie.png");
+
     }
     .discover::before {
         content: url("https://i.postimg.cc/tJknfvKC/dicover-sm.png");
@@ -194,6 +269,232 @@ li.nav-item.space-home{
     .space{
         padding-right: 3em;
     }
+}
+.small_container{
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgb(18, 17, 17), #252552, #222, #22223f, #222);
+    min-height: 50vh;
+}
 
+/*body h2{
+    margin-top: -60px;
+}*/
+
+body h2{
+    margin-top: 60px;
+}
+.dayPlaylistTitle h3{
+
+    margin-left: 20px;
+    font-size: 2.3vw;
+    background: -webkit-linear-gradient(#079DFD, #EA10D4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.like-dislike-alignement{
+    display: flex;
+    flex-direction: row;
+}
+.container-card{
+    position: relative;
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    margin-left: 30px;
+}
+
+.small_container .card{
+    position: relative;
+    height: 250px;
+    background: #FFF;
+    display: flex;
+    width: 40%;
+    margin: 30px 0;
+}
+.small_container .card .vidBx{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: 0.5s ease-in-out;
+}
+.container-card .card:hover .vidBx {
+    width: 150px;
+    height: 250px;
+    left: -80px;
+    top: calc(50% - 75px);
+    transition: 0.5s ease-in-out;
+    background: #FF0057;
+}
+.container-card .card .vidBx:before {
+    content: attr(data-text);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 6em;
+    color: rgba(255, 255, 255, 0.454);
+    font-weight: 700;
+}
+
+iframe{
+    width: 100%;
+    height: 100%;
+}
+
+.card-top .vidBx iframe{
+    width: auto;
+    height: 100%;
+}
+
+.container-card .card .vidBx iframe:hover{
+    position: absolute;
+    overflow: hidden;
+    transition: 0.5s ease-in-out;
+    width: 100%;
+    height: 100%;
+}
+
+.container-card .card .vidBx iframe{
+    max-width: 100%;
+    transition: 0.5s ease-in-out;
+}
+.container-card .card:hover .vidBx iframe{
+    max-width: 100%;
+
+}
+.container-card .card .content{
+    position: absolute;
+    right: 0;
+    width: calc(100% - 75px);
+    height: 100%;
+    padding: 40px 20px 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-card .card .content h3{
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+.container-card .card .content a{
+    display: inline-block;
+    margin-top: 15px;
+    padding: 5px 20px;
+    background: #333;
+    text-decoration: none;
+    color: #FFF;
+}
+.title-card{
+    font-size: 2em;
+    font-family: 'Raleway', sans-serif ;
+
+}
+.buttons {
+    position: relative;
+    margin: 2em auto 20px auto;
+    padding: 20px;
+    float: left;
+    display: block;
+    background-color: #eee;
+    border-radius: 4px;
+}
+.buttons:after {
+    top: 100%;
+    left: 50%;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-top-color: #eee;
+}
+.button {
+    padding: 10px 20px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    background-color: #7F8C8D;
+    border: none;
+    border-radius: 4px;
+}
+#play-button {
+    background-color: #2ECC71;
+}
+#play-button:hover {
+    background-color: #27AE60;
+}
+#pause-button {
+    background-color: #E67E22;
+}
+#pause-button:hover {
+    background-color: #D35400;
+}
+#stop-button {
+    background-color: #E74C3C;
+}
+#stop-button:hover {
+    background-color: #C0392B;
+}
+#pause-button,
+#stop-button {
+    margin-left: 15px;
+}
+
+@media (max-width: 992px)
+{
+    .content-card{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .container-card .card{
+        width: 400px;
+    }
+}
+@media (max-width: 700px) {
+
+    .container-card .card {
+        display: flex;
+        max-width: 400px;
+        flex-direction: column;
+        height: auto;
+    }
+    .container-card .card .vidBx{
+        position: relative;
+    }
+
+    .container-card .card .vidBx,
+    .container-card .card:hover .vidBx{
+        width: 100%;
+        height: 250px;
+        left: 0;
+    }
+
+    .container-card .card .vidBx iframe,
+    .container-card .card:hover .vidBx iframe{
+        max-width: 100%;
+    }
+
+    .container-card .card .content{
+        position: relative;
+        width: 100%;
+    }
 }

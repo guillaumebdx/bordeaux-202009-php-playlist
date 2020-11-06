@@ -1,0 +1,58 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+    <div class="dayPlaylistTitle text-white"><h1>Playlist du {{ playlist.date }}</h1></div>
+
+        <div class="small_container">
+
+            <div class="container-card">
+                {% for track in tracks %}
+                    <div class="card">
+                        <div class="vidBx" data-text={{ track.artist }}>
+                            <iframe id="video" src="https://www.youtube.com/embed/{{ track.url }}?enablejsapi=1&html5=1.?modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+
+                        <div class="content">
+                            <div>
+
+                                <div class="title-card">{{ track.title }} - {{ track.artist }}</div>
+                                <!-- TODO Taf de Audrey front -->
+
+                                <div class="like-dislike-alignement">
+                                <div >
+                                    <form action="/track/addlike/{{ track.id }}" method="POST">
+                                        <button class="btn btn-danger">Like </button>
+                                    </form>
+                                </div>
+                                <div>
+                                    <form action="/track/dislike/{{ track.id }}" method="POST">
+                                        <button class="btn btn-danger">Dislike</button>
+                                    </form>
+
+                                </div>
+                                    <div>
+                                        <p>{{ track.nblike }}</p>
+                                    </div>
+
+                                </div>
+
+
+
+                            <div class="buttons">
+
+                                    <button class="button" id="play-button"><img src="/assets/images/music-play.png" width="30px" alt=""></button>
+                                    <button class="button" id="pause-button"><img src="/assets/images/music-pause.png" width="30px" alt=""></button>
+                                    <button class="button" id="stop-button"><img src="/assets/images/music-stop.png" width="30px" alt=""></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                        <h1 class="text-white">Il n'y a pas encore de musique dans la {{ playlist.date }} ajoute en une!</h1>
+                {% endfor %}
+            </div>
+        </div>
+
+
+{% endblock %}

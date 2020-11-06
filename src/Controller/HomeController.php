@@ -28,7 +28,11 @@ class HomeController extends AbstractController
         $today = new \DateTime();
         $playlist = $playlistManager->selectPlaylistsByDay($today->format('Y-m-d'));
         $trackManager = new TrackManager();
-        $tracks = $trackManager->selectTracksByDay($playlist['id']);
+        $tracks = [];
+        if ($playlist){
+            $tracks = $trackManager->selectTracksByDay($playlist['id']);
+        }
+
 
         return $this->twig->render('Home/index.html.twig', [
             'tracks' => $tracks,

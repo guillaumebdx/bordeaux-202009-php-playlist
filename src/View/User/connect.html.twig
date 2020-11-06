@@ -1,0 +1,25 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h2>Connectes-toi</h2>
+    <div>
+        <p>Si tu n'es pas inscrit, <a href="/User/register">viens-ici</a> </p>
+    </div>
+    <form action="/User/check" method="post" >
+        <div class="container-sm">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="pseudo" class="mt-5">Ton pseudo</label><br>
+                    <input class="w-100" type="text" value="{{ user.pseudo }}" name="pseudo" id="pseudo" placeholder="Shakira" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="password" class="mt-5">Ton mot de passe</label><br>
+                    <input class="w-100" type="password" value="{{ user.password }}" name="password" id="password" placeholder="*****" required>
+                </div>
+            </div>
+        </div>
+        <button class="btn-grad mx-auto" type="submit">Ajouter</button>
+        </div>
+        </div>
+    </form>
+{% endblock %}

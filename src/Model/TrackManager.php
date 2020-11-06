@@ -37,9 +37,31 @@ class TrackManager extends AbstractManager
         }
     }
 
-
     public function selectTracksByDay($idPlaylist)
     {
         return $this->pdo->query("SELECT * FROM  $this->table  WHERE playlist_id= '$idPlaylist'")->fetchAll();
+    }
+
+    public function selectTracksLike()
+    {
+        return $this->pdo->query("SELECT * FROM  $this->table  ORDER BY nblike DESC LIMIT 10")->fetchAll();
+    }
+
+    public function addLike($trackId, $nbLike)
+    {
+        $statement = $this->pdo->query("UPDATE " . self::TABLE . " SET `nblike` = $nbLike WHERE id = $trackId");
+
+        return $statement->execute();
+    }
+    public function dislike($trackId, $nbLike)
+    {
+        $statement = $this->pdo->query("UPDATE " . self::TABLE . " SET `nblike` = $nbLike WHERE id = $trackId");
+
+        return $statement->execute();
+    }
+
+    public function showLike($trackId)
+    {
+        return $this->pdo->query("SELECT nblike FROM  $this->table  WHERE id = $trackId ")->fetch();
     }
 }
