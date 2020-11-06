@@ -1,9 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div class="dayPlaylistTitle"><h2>Playlist of the {{ playlist.date }}</h2></div>
-
-
+    <div class="dayPlaylistTitle"><h3>Playlist of the {{ playlist.date }}</h3></div>
 
         <div class="small_container">
 
@@ -19,7 +17,8 @@
                                 <h3>{{ track.title }}</h3>
                                 <p>The name of the someone who added the song, the like button and its counter,</p>
 
-                                <div>
+                                <div class="like-dislike-alignement">
+                                <div >
                                     <form action="/track/addlike/{{ track.id }}" method="POST">
                                         <button class="btn btn-danger">Like </button>
                                     </form>
@@ -28,12 +27,17 @@
                                     <form action="/track/dislike/{{ track.id }}" method="POST">
                                         <button class="btn btn-danger">Dislike</button>
                                     </form>
+
                                 </div>
-                                <div>
-                                    <p>{{ track.nblike }}</p>
+                                    <div>
+                                        <p>{{ track.nblike }}</p>
+                                    </div>
+
                                 </div>
 
-                                <div class="buttons">
+
+
+                            <div class="buttons">
                                     <button class="button" id="play-button"><img src="/assets/images/music-play.png" width="30px" alt=""></button>
                                     <button class="button" id="pause-button"><img src="/assets/images/music-pause.png" width="30px" alt=""></button>
                                     <button class="button" id="stop-button"><img src="/assets/images/music-stop.png" width="30px" alt=""></button>
@@ -42,7 +46,7 @@
                         </div>
                     </div>
                     {% else %}
-                        <h1>FUCK </h1>
+                        <h1>Il n'y a pas encore de musique dans la playlist ajoute en une!</h1>
                 {% endfor %}
             </div>
         </div>

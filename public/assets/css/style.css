@@ -13,55 +13,54 @@
     src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
 }
 
-body{
+body {
     background-color: var(--background);
 }
 
-hr{
+hr {
     background-color: var(--separator);
     margin-top: 6em;
 
 }
 
-nav li{
+nav li {
     list-style: none;
 
 }
 
-nav li :hover{
+nav li :hover {
     text-decoration: none;
     color: var(--secondary);
 }
 
-nav li a{
+nav li a {
     font-size: 1.2vw;
     color: var(--blue);
 
 }
-.space{
+.space {
     padding-right: 4em;
 }
 
-.navbar{
+.navbar {
     padding: 0.2em 0 0 1em;
     background-color: var(--background);
     position: -webkit-sticky;
     position: sticky;
     top: 0;
 }
-.navbar-nav{
+.navbar-nav {
     flex-direction: row;
     justify-content: space-around;
 }
 
-nav .container{
+nav .container {
     margin: 0;
     padding-right: 0;
     max-width: 1408px;
-
 }
 
-.position{
+.position {
     position: fixed;
     top: 0;
     right: 0;
@@ -81,7 +80,7 @@ nav .container{
     content: "Top";
 }
 
-li.nav-item.space-home{
+li.nav-item.space-home {
     display: none;
 }
 .discover::before {
@@ -91,31 +90,41 @@ li.nav-item.space-home{
 .connexion::before {
     content: "Connexion";
 }
-h2{
+
+h2,
+h4
+{
     text-align: center;
     background: -webkit-linear-gradient(#079DFD, #EA10D4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-label[for=title], label[for=artist], label[for=url]{
+label[for=title],
+label[for=artist],
+label[for=url],
+label[for=pseudo],
+label[for=password],
+label[for=email]
+{
     color: white;
 }
 
-form{
+form {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
 }
 
-.container-form, .col-md-5 .col-md-12{
+.container-form, .col-md-5 .col-md-12 {
     margin-left: 0;
     padding-left: 0;
 }
 
-
 .btn-grad {background-image: linear-gradient(to right, #fc00ff 0%, #00dbde  51%, #fc00ff  100%)}
 .btn-grad {
+    display: flex;
+    justify-content: center;
     padding: 7px 70px;
     text-align: center;
     text-transform: uppercase;
@@ -125,30 +134,33 @@ form{
     background-size: 200% auto;
     color: white;
     border-radius: 50px;
-    display: block;
-    border: none;
+    margin-top: 6em;
 }
 
 .btn-grad:hover {
-    background-position: right center; /* change the direction of the change here */
+    background-position: right center;
     color: #fff;
     text-decoration: none;
 }
 
-input{
-    background-color: black;
+input {
+    background-color: var(--background);
     border-style: none;
     border-bottom: var(--separator) solid 1px;
     font-family: 'Raleway', sans-serif;
     outline: none;
+    color: white;
 }
 
-button:active {
+button:active .btn-grad {
     outline: none;
     border: none;
+
 }
-
-
+.video{
+    font-family: 'Raleway', sans-serif;
+    color: var(--blue);
+}
 
 @media screen and (min-width: 1400px){
     nav li a{
@@ -257,29 +269,30 @@ button:active {
     .space{
         padding-right: 3em;
     }
-
 }
-
 .small_container{
 
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(rgb(18, 17, 17), #252552, #222, #22223f, #222);
-    min-height: 100vh;
+    min-height: 50vh;
 }
-
 body h2{
-    margin-top: -60px;
+    margin-top: 60px;
 }
-.dayPlaylistTitle h2{
+.dayPlaylistTitle h3{
     margin-left: 20px;
-    font-size: 2.8vw;
+    font-size: 2.3vw;
     background: -webkit-linear-gradient(#079DFD, #EA10D4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+.like-dislike-alignement{
+    display: flex;
+    flex-direction: row;
+}
 .container-card{
     position: relative;
     width: 1200px;
@@ -318,7 +331,7 @@ body h2{
     left: -80px;
     top: calc(50% - 75px);
     transition: 0.5s ease-in-out;
-    /*background: #FF0057; */
+    background: #FF0057;
 }
 .container-card .card .vidBx:before {
     content: attr(data-text);
@@ -334,6 +347,11 @@ body h2{
 
 iframe{
     width: 100%;
+    height: 100%;
+}
+
+.card-top .vidBx iframe{
+    width: auto;
     height: 100%;
 }
 
@@ -358,7 +376,7 @@ iframe{
     right: 0;
     width: calc(100% - 75px);
     height: 100%;
-    padding: 20px;
+    padding: 40px 20px 0 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -369,8 +387,8 @@ iframe{
 }
 .container-card .card .content a{
     display: inline-block;
-    margin-top: 10px;
-    padding: 5px 10px;
+    margin-top: 15px;
+    padding: 5px 20px;
     background: #333;
     text-decoration: none;
     color: #FFF;
@@ -428,6 +446,7 @@ iframe{
 #stop-button {
     margin-left: 15px;
 }
+
 @media (max-width: 992px)
 {
     .content-card{

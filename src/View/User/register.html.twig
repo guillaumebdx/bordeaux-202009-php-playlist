@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h2>Inscris-toi gratuitement</h2>
+    <h4>afin de poster ta chanson quotidienne</h4>
+    <form action="/user/add" method="post">
+        <input type="hidden" value="{{ user.id }}" name="id">
+        <div class="container-sm">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="pseudo" class="mt-5">Ton pseudo</label><br>
+                    <input class="w-100" type="text" value="{{ user.pseudo }}" name="pseudo" id="pseudo" placeholder="Shakira" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="password" class="mt-5">Ton mot de passe</label><br>
+                    <input class="w-100" type="password" value="{{ user.password }}" name="password" id="password" placeholder="*****" required>
+                </div>
+                <div class="col-md-12">
+                    <label for="email" class="mt-5">ici ton adresse email</label><br>
+                    <input class="w-100" type="email" value="{{ user.email }}" name="email" id="email" placeholder="Shakira@yahoo.com" required>
+                </div>
+            </div>
+            <button class="btn-form" type="submit" style="border: 0; background: transparent">
+                <img src="/assets/images/Bouton-Envoyer.PNG" alt="submit" />
+            </button>
+        </div>
+    </form>
+{% endblock %}
