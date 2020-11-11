@@ -1,6 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+    <?php session_start() ?>
     <h2>Ajoute ta musique</h2>
     {% include 'Home/_form.html.twig' %}
 {% endblock %}

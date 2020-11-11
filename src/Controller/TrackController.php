@@ -23,10 +23,17 @@ class TrackController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      */
 
+    public function checkConnexion()
+    {
+        if (!isset($_SESSION['user'])) {
+            header('Location: /User/connect');
+        }
+    }
 
 
     public function add()
     {
+        $this->checkConnexion();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $playlistManager = new PlaylistManager();
 
@@ -46,6 +53,7 @@ class TrackController extends AbstractController
                     'artist' => $_POST['artist'],
                     'url' => $urlClean,
                     'playlist_id' => $playlist ? $playlist['id'] : $newPlaylistId,
+                    'user_id' => $_SESSION['user']['id'],
                 ];
                 $trackManager->insert($track);
                 header('Location:/Home/index/');
