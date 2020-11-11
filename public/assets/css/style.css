@@ -6,6 +6,7 @@
     --blue:#00fffa;
     --gradient: -webkit-linear-gradient(#079DFD, #EA10D4);
     --font-family-sans-serif: 'Raleway', sans serif;
+    --wcs: #F76B6B;
 }
 
 @font-face {
@@ -161,6 +162,24 @@ button:active .btn-grad {
     font-family: 'Raleway', sans-serif;
     color: var(--blue);
 }
+.footer-flex{
+    display: flex;
+    align-content: center;
+}
+.fa-github{
+    color: white;
+}
+.wcs{
+    color: var(--wcs);
+}
+.wcs:hover{
+    color: white;
+    text-decoration: none;
+}
+.footer-btn{
+    background-image: linear-gradient(to right, #fc00ff 0%, #00dbde  51%, #fc00ff  100%)
+}
+
 
 @media screen and (min-width: 1400px){
     nav li a{
@@ -269,13 +288,19 @@ button:active .btn-grad {
     .space{
         padding-right: 3em;
     }
+    .footer-flex{
+        display: block;
+    }
+    body{
+        margin-bottom: 3em;
+    }
 }
 .small_container{
 
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgb(18, 17, 17), #252552, #222, #22223f, #222);
+    /*background: linear-gradient(rgb(18, 17, 17), #252552, #222, #22223f, #222);*/
     min-height: 50vh;
 }
 
@@ -290,9 +315,9 @@ body h2{
 
     margin-left: 20px;
     font-size: 2.3vw;
-    background: -webkit-linear-gradient(#079DFD, #EA10D4);
+    /*background: -webkit-linear-gradient(#079DFD, #EA10D4);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;*/
 }
 
 .like-dislike-alignement{
