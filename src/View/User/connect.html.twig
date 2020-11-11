@@ -2,9 +2,6 @@
 
 {% block content %}
     <h2>Connectes-toi</h2>
-    <div>
-        <p>Si tu n'es pas inscrit, <a href="/User/register">viens-ici</a> </p>
-    </div>
     <form action="/User/check" method="post" >
         <div class="container-sm">
             <div class="row">
@@ -18,8 +15,15 @@
                 </div>
             </div>
         </div>
+        <div class="mb-5">
         <button class="btn-grad mx-auto" type="submit">Ajouter</button>
         </div>
         </div>
+        </div>
     </form>
+
+        <h6 class="text-secondary pt-5">Pas encore de compte ?
+                <a class="pl-1 underline " href="/User/register"> Inscris-toi !</a>
+        </h6>
+
 {% endblock %}

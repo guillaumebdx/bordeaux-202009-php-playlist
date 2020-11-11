@@ -1,6 +1,11 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h2>Ajoute ta musique</h2>
+
+    <div class="d-flex mb-3">
+        <a href="/"><i class="fa fa-arrow-left fa-2x pl-4 "></i></a>
+        <h2 class="mx-auto h2-form" >Ajoute ta musique</h2>
+    </div>
+
     {% include 'Home/_form.html.twig' %}
 {% endblock %}

@@ -2,5 +2,10 @@
 
 {% block content %}
 
-    {% include 'Home/_dayPlaylist.html.twig' %}
+    <a class="none" href="/track/add">
+        <button class="btn-grad" >Ajouter une musique</button>
+    </a>
+
+    {% include '/Home/_dayPlaylist.html.twig' %}
+    {% include '/Home/_top.html.twig'%}
 {% endblock %}
