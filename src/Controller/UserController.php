@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Model\UserManager;
+use App\Service\FormValidator;
 
 class UserController extends AbstractController
 {
@@ -23,25 +24,39 @@ class UserController extends AbstractController
         $userManager = new UserManager();
         $user = $userManager->selectAllUsers();
         foreach ($user as $userData => $userPseudo) {
-            echo $userPseudo['pseudo'];
 
-            if ($userPseudo ['pseudo'] = $_POST['pseudo']) {
-                header('Location: /');
+
+
+            if ($userPseudo ['pseudo'] === $_POST['pseudo']) {
+                header('Location: /User/register');
             } else {
-
+                $errorMessages = [];
+                $userData = [];
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $userManager = new UserManager();
-                    //TODO check if username already exist
-                    $userData = [];
-                    $userData ['pseudo'] = $_POST['pseudo'];
-                    $userData ['email'] = $_POST['email'];
-                    $userData ['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                    $userId = $userManager->createUser($userData);
-                    //TODO login directly
+                    $formValidator = new FormValidator();
+                    $formValidator->setFields($_POST);
+                    $formValidator->checkField();
+                    $errorMessages = $formValidator->getErrors();
+                    if (empty($errorMessages)) {
+                        $userManager = new UserManager();
+                        //TODO check if username already exist
+                        $userData ['pseudo'] = $_POST['pseudo'];
+                        $userData ['email'] = $_POST['email'];
+                        $userData ['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                        $userId = $userManager->createUser($userData);
+                        //TODO login directly
 
-                    header('Location: /');
-                } else {
-                    echo 'Methode interdite';
+                        header('Location: /');
+                    } else {
+                        $userData ['pseudo'] = $_POST['pseudo'];
+                        $userData ['email'] = $_POST['email'];
+                        $userData ['password'] = $_POST['password'];
+
+                        return $this->twig->render('/User/register.html.twig', [
+                            'errors' => $errorMessages,
+                            'userData' => $userData,
+                        ]);
+                    }
                 }
             }
         }
@@ -49,19 +64,41 @@ class UserController extends AbstractController
 
     public function check()
     {
+
         $userManager = new UserManager();
         $userData = $userManager->selectOneByPseudo($_POST['pseudo']);
 
+
         // Todo to be update
-            if ($_SESSION['user']['pseudo'] === $userData) {
-                if (password_verify($_POST['password'], $userData['password'])) {
-                    $_SESSION['user'] = $userData;
-                    header('Location: /');
-                } else {
-                    header('Location: /User/connect');
-                }
-            }
+        if ($userData && password_verify($_POST['password'], $userData['password'])) {
+
+            $_SESSION['user'] = $userData;
+            return $this->twig->render('/Home/index.html.twig');
         }
+        header('Location: /User/connect');
+    }
+
+    public function checkFormConnect()
+    {
+        $errorMessages = [];
+        $userData = [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $formValidator = new FormValidator();
+            $formValidator->setFields($_POST);
+            $formValidator->checkField();
+            $errorMessages = $formValidator->getErrors();
+
+            if (!empty($errorMessages)) {
+                $userData['pseudo'] = $_POST['pseudo'];
+                $userData['password'] = $_POST['password'];
+
+                return $this->twig->render('/User/connect.html.twig', [
+                    'errors' => $errorMessages,
+                    'userData' => $userData,
+                ]);
+            }
+        } return $this->check();
+    }
 
 
     public function checkConnexion()
