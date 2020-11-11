@@ -17,39 +17,34 @@
                                 <div class="title-card">{{ track.title }} - {{ track.artist }}</div>
 
                                 <div class="like-dislike-alignement">
-                                <div >
-                                    <form action="/track/addlike/{{ track.id }}" method="POST">
-                                        <button class="btn btn-danger">Like </button>
-                                    </form>
-                                </div>
                                 <div>
-                                    <form action="/track/dislike/{{ track.id }}" method="POST">
-                                        <button class="btn btn-danger">Dislike</button>
+                                    <form class ="flex" action="/track/addlike/{{ track.id }}" method="POST">
+                                        <i id="heart" class="far fa-heart fa-lg mr-2" data-nblike="{{ track.nblike }}" data-trackid="{{ track.id }}" ></i>
+                                            <div id="likecounter-{{ track.id }}">
+
+                                                {% if track.nblike == 0 %}
+                                                    <p></p>
+                                                {% else %}
+                                                    {{ track.nblike }}
+                                                {% endif %}
+
+
+                                            </div>
                                     </form>
-
-                                </div>
-                                    <div>
-                                        <p>{{ track.nblike }}</p>
-                                    </div>
-
                                 </div>
 
-
-
-                            <div class="buttons">
-
-                                    <button class="button" id="play-button"><img src="/assets/images/music-play.png" width="30px" alt=""></button>
-                                    <button class="button" id="pause-button"><img src="/assets/images/music-pause.png" width="30px" alt=""></button>
-                                    <button class="button" id="stop-button"><img src="/assets/images/music-stop.png" width="30px" alt=""></button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     {% else %}
-                        <h1 class="text-white">Il n'y a pas encore de musique dans la {{ playlist.date }} ajoute en une!</h1>
+                        <h1 class="text-white">Il n'y a pas encore de playlist, sois le premier à ajouter un morceau !</h1>
+                        <a href="/track/add"><button class="btn btn-warning" >Ajouter une musique</button></a>
                 {% endfor %}
             </div>
         </div>
+
+
 
 
 {% endblock %}

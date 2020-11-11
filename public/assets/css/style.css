@@ -14,8 +14,10 @@
     src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
 }
 
+
 body {
     background-color: var(--background);
+    overflow-x: hidden;
 }
 
 hr {
@@ -46,9 +48,10 @@ nav li a {
 .navbar {
     padding: 0.2em 0 0 1em;
     background-color: var(--background);
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
+    z-index: 10;
     top: 0;
+    height: 100px;
 }
 .navbar-nav {
     flex-direction: row;
@@ -68,10 +71,11 @@ nav .container {
     left: 0;
 }
 
-.logo::before {
+/* .logo::before {
     content: url("https://i.postimg.cc/Z5P8ZgS1/bcb-small.png");
-            /* LOGO PINK/BLUE url("https://i.postimg.cc/vBrJVT2k/logoxxs.png");*/
+            /* LOGO PINK/BLUE url("https://i.postimg.cc/vBrJVT2k/logoxxs.png");
 }
+*/
 
 .calendar::before {
     content: "Calendrier";
@@ -126,21 +130,26 @@ form {
 .btn-grad {
     display: flex;
     justify-content: center;
-    padding: 7px 70px;
     text-align: center;
     text-transform: uppercase;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 400;
     transition: 0.5s;
     background-size: 200% auto;
     color: white;
     border-radius: 50px;
+    border: none;
+    padding: 7px 70px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
     margin-top: 6em;
 }
 
 .btn-grad:hover {
     background-position: right center;
     color: #fff;
+    text-decoration: none;
+}
+
+.none:hover{
     text-decoration: none;
 }
 
@@ -180,6 +189,55 @@ button:active .btn-grad {
     background-image: linear-gradient(to right, #fc00ff 0%, #00dbde  51%, #fc00ff  100%)
 }
 
+
+.fas {
+    color: red;
+}
+
+.fas span{
+    color: black;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+/*.flex-add {
+    display: flex;
+    align-items: center;
+    margin-top: 60px;
+}*/
+
+.fa-arrow-left{
+    color: white;
+    margin-top: 60px;
+    position: absolute;
+    z-index: 1;
+}
+
+.fa-arrow-left:hover{
+    color: var(--secondary);
+}
+
+.h2-form{
+    position: relative;
+    z-index: 2;
+}
+
+h6.text-secondary{
+    content: var(--separator);
+    display: flex;
+    justify-content: center;
+}
+
+.underline{
+    color: #6c757d;
+}
+.underline:hover{
+    color: var(--secondary);
+    text-decoration: none;
+}
 
 @media screen and (min-width: 1400px){
     nav li a{
@@ -300,13 +358,8 @@ button:active .btn-grad {
     display: flex;
     justify-content: center;
     align-items: center;
-    /*background: linear-gradient(rgb(18, 17, 17), #252552, #222, #22223f, #222);*/
     min-height: 50vh;
 }
-
-/*body h2{
-    margin-top: -60px;
-}*/
 
 body h2{
     margin-top: 60px;

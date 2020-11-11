@@ -1,6 +1,12 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+    {% include '/Home/_navbar.html.twig'%}
+    <a class="none" href="/track/add">
+        <button class="btn-grad" >Ajouter une musique</button>
+    </a>
 
-    {% include 'Home/_dayPlaylist.html.twig' %}
+    {% include '/Home/_dayPlaylist.html.twig' %}
+    {% include '/Home/_top.html.twig'%}
+    {% include '/Home/_footer.html.twig' %}
 {% endblock %}
