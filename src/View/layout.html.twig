@@ -14,9 +14,11 @@
 </head>
 
 <body>
+{% include '/Home/_navbar.html.twig'%}
 
 {% block content %}{% endblock %}
 {% block javascript %}{% endblock %}
+{% include '/Home/_footer.html.twig' %}
 
 
 <script type="text/javascript" src="/assets/js/script.js"></script>

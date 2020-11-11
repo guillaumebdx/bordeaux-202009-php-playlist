@@ -5,10 +5,9 @@
     <div id="top">
         <h1 class="text-white font-weight-bold mb-5">Titre les plus aimés</h1>
         <div class="row mb-5">
+
             {% for track in tracks %}
 
-
-            <!--Grid column-->
             <div class="col-xl-3 col-lg-4 col-md-12">
 
                 <div class="embed-responsive embed-responsive-16by9">
@@ -21,9 +20,11 @@
                 </div>
 
             </div>
-        </div>
+
 
         {% endfor %}
+
+    </div>
     </div>
 
 {% endblock %}

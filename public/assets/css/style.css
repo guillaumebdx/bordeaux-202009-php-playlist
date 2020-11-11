@@ -18,6 +18,8 @@
 body {
     background-color: var(--background);
     overflow-x: hidden;
+    margin-block-start: 7em;
+    margin: 1.2em 1.2em;
 }
 
 hr {
