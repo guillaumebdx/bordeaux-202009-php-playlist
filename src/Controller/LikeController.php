@@ -33,7 +33,4 @@ class LikeController extends AbstractController
         ];
         return json_encode($response);
     }
-
-
-
 }

@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    <h1 class="text-white font-weight-bold mb-5">Titre les plus aimés</h1>
+    <div class="row mb-5">
+    {% for track in tracks %}
+        <div class="col-xl-3 col-lg-4 col-md-12">
+
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item rounded"
+                        src="https://www.youtube.com/embed/{{ track.url }}?enablejsapi=1&html5=1.?modestbranding=1"
+                        style="height: 101%"
+                        allowfullscreen></iframe>
+            </div>
+            <div class="video">
+                <h5 class="mt-4 mb-5 text-white">{{ track.title }} - {{ track.artist }} </h5>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
