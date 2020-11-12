@@ -2,11 +2,13 @@
     --background: #191919;
     --separator: #4F4F4F;
     --primary: #079DFD;
-    --secondary: #EA10D4;
+    --secondary: #c1c1c1;
     --blue:#00fffa;
     --gradient: -webkit-linear-gradient(#079DFD, #EA10D4);
     --font-family-sans-serif: 'Raleway', sans serif;
     --wcs: #F76B6B;
+    --red: #B80036;
+    --grey: #7c7b7b;
 }
 
 @font-face {
@@ -14,17 +16,64 @@
     src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
 }
 
-
-body {
-    background-color: var(--background);
-    overflow-x: hidden;
-    margin-block-start: 7em;
-    margin: 1.2em 1.2em;
+p{
+    font-family: 'Raleway', sans-serif;
 }
 
+body {
+    background: var(--background);
+    overflow-x: hidden;
+    background-size: cover;
+    margin-block-start: 5em;
+    position: relative;
+    z-index: 10;
+
+}
+
+main{
+    margin-inline-start: 1.6em;
+    margin-inline-end: 1.6em;
+}
+
+h6 {
+    font-size: 1.1rem;
+}
+
+img.homeimg{
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    top:2em;
+
+}
+ div.dayPlaylistTitle.text-white{
+     margin-block-start: 13em;
+     margin-inline-start: 1.5em;
+ }
+
+.homeimg{
+    align-items: center;
+    width: 100%;
+}
+
+.home-text{
+    color: white;
+    font-size: 6vw;
+    position: relative;
+    z-index: 2;
+    margin: 1.7em 1em 0.6em 2em;
+
+}
+ a.none{
+     display: flex;
+     justify-content: center;
+     position: relative;
+     z-index: 2;
+     top: 3em;
+ }
+
 hr {
-    background-color: var(--separator);
-    margin-top: 6em;
+    background-color: var(--secondary);
 
 }
 
@@ -40,7 +89,7 @@ nav li :hover {
 
 nav li a {
     font-size: 1.2vw;
-    color: var(--blue);
+    color: whitesmoke;
 
 }
 .space {
@@ -72,12 +121,6 @@ nav .container {
     right: 0;
     left: 0;
 }
-
-/* .logo::before {
-    content: url("https://i.postimg.cc/Z5P8ZgS1/bcb-small.png");
-            /* LOGO PINK/BLUE url("https://i.postimg.cc/vBrJVT2k/logoxxs.png");
-}
-*/
 
 .calendar::before {
     content: "Calendrier";
@@ -188,28 +231,18 @@ button:active .btn-grad {
     text-decoration: none;
 }
 .footer-btn{
-    background-image: linear-gradient(to right, #fc00ff 0%, #00dbde  51%, #fc00ff  100%)
+    background-image: linear-gradient(to right, #d40086 0%, #00dbde  51%, #fc00ff  100%)
 }
 
 
-.fas {
-    color: red;
-}
-
-.fas span{
-    color: black;
+.fa-heart{
+    color: #D40086;
 }
 
 .flex {
     display: flex;
     align-items: center;
 }
-
-/*.flex-add {
-    display: flex;
-    align-items: center;
-    margin-top: 60px;
-}*/
 
 .fa-arrow-left{
     color: white;
@@ -241,6 +274,18 @@ h6.text-secondary{
     text-decoration: none;
 }
 
+.likecounter{
+    color: white;
+
+}
+
+div.video{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+
 @media screen and (min-width: 1400px){
     nav li a{
         font-size: 1.2vw;
@@ -259,11 +304,19 @@ h6.text-secondary{
         font-size: 1.4vw;
     }
 
+    a.none{
+        top:422px;
+    }
+
 }
 @media screen and (min-width: 993px) and (max-width: 1049px){
 
     nav li a{
         font-size: 1.6vw;
+    }
+
+    a.none{
+        top: 379px;
     }
 
 }
@@ -276,6 +329,10 @@ h6.text-secondary{
         font-size: 1.7vw;
     }
 
+    a.none{
+        top: 336px;
+    }
+
 }
 
 @media screen and (min-width: 768px) and (max-width: 849px){
@@ -284,6 +341,9 @@ h6.text-secondary{
     }
     nav li a{
         font-size: 2vw;
+    }
+    a.none{
+        top: 293px;
     }
 
 }
@@ -353,6 +413,10 @@ h6.text-secondary{
     }
     body{
         margin-bottom: 3em;
+    }
+
+    a.none{
+        top: 250px;
     }
 }
 .small_container{

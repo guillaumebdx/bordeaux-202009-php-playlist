@@ -13,11 +13,14 @@
 
 </head>
 
-<body>
+<body id="body">
+
+<main>
 {% include '/Home/_navbar.html.twig'%}
 
 {% block content %}{% endblock %}
 {% block javascript %}{% endblock %}
+</main>
 {% include '/Home/_footer.html.twig' %}
 
 
