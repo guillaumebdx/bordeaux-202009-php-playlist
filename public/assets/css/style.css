@@ -53,7 +53,7 @@ nav li a {
     position: fixed;
     z-index: 10;
     top: 0;
-    z-index: 2;
+    height: 100px;
 }
 .navbar-nav {
     flex-direction: row;
@@ -241,8 +241,6 @@ h6.text-secondary{
     text-decoration: none;
 }
 
-/*--------For Day Playlist-------------------------*/
-
 
 .modal-content {
     background-color: var(--background);
@@ -316,7 +314,6 @@ h6.text-secondary{
 .container-card .card-play .box.contentBx .content .like-dislike-alignement{
     padding-top: 0;
 }
-
 
 @media screen and (min-width: 1400px){
     nav li a{
@@ -424,5 +421,12 @@ h6.text-secondary{
 
     .space{
         padding-right: 3em;
+    }
+
+    .footer-flex{
+        display: block;
+    }
+    body{
+        margin-bottom: 3em;
     }
 }

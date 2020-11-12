@@ -22,8 +22,18 @@ class TrackController extends AbstractController
      */
 
 
+    public function checkConnexion()
+    {
+        if (!isset($_SESSION['user'])) {
+            header('Location: /User/connect');
+            exit();
+        }
+    }
+
     public function add()
     {
+
+        $this->checkConnexion();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $playlistManager = new PlaylistManager();
 
@@ -37,16 +47,19 @@ class TrackController extends AbstractController
             if (!$playlist) {
                 $newPlaylistId = $playlistManager->createPlaylist($todayFormat);
             }
-            $trackManager = new TrackManager();
-            $track = [
-                'title' => $_POST['title'],
-                'artist' => $_POST['artist'],
-                'url' => $urlClean,
-                'playlist_id' => $playlist ? $playlist['id'] : $newPlaylistId,
-                'nblike' => 0,
-            ];
-            $trackManager->insert($track);
-            header('Location:/Home/index/');
+
+                $trackManager = new TrackManager();
+                $track = [
+                    'title' => $_POST['title'],
+                    'artist' => $_POST['artist'],
+                    'url' => $urlClean,
+                    'playlist_id' => $playlist ? $playlist['id'] : $newPlaylistId,
+                    'user_id' => $_SESSION['user']['id'],
+                    'nblike' => 0,
+                ];
+                $trackManager->insert($track);
+                header('Location:/Home/index/');
+
         }
         return $this->twig->render('/Home/add.html.twig');
     }

@@ -81,7 +81,6 @@ let firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 
-
 // LIKES //
     const likes = document.getElementsByClassName('fa-heart');
 

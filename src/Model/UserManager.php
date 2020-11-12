@@ -13,10 +13,9 @@ class UserManager extends AbstractManager
         parent::__construct(self::TABLE);
     }
 
-
     public function createUser($userData)
     {
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . "(`pseudo`, `password`, `email`) VALUES (:pseudo, :email, :password)");
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . "(`pseudo`, `password`, `email`) VALUES (:pseudo, :password, :email)");
         $statement->bindValue(':pseudo', $userData['pseudo'], \PDO::PARAM_STR);
         $statement->bindValue(':email', $userData['email'], \PDO::PARAM_STR);
         $statement->bindValue(':password', $userData['password'], \PDO::PARAM_STR);
@@ -30,6 +29,13 @@ class UserManager extends AbstractManager
         $statement->bindValue(':pseudo', $pseudo, \PDO::PARAM_STR);
         $statement->execute();
         return $statement->fetch();
+    }
+
+    public function selectAllUsers()
+    {
+        $statement = $this->pdo->prepare("SELECT * FROM $this->table");
+        $statement->execute();
+        return $statement->fetchAll();
     }
 }
 
