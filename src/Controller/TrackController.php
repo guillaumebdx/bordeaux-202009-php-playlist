@@ -12,8 +12,6 @@ class TrackController extends AbstractController
 {
 
 
-
-
     /**
      * Display item creation page
      *
@@ -30,7 +28,6 @@ class TrackController extends AbstractController
         }
     }
 
-
     public function add()
     {
         $this->checkConnexion();
@@ -41,12 +38,13 @@ class TrackController extends AbstractController
             $urlPreClean = explode("watch?v=", $url);
             $urlClean = substr(array_pop($urlPreClean), 0, 11);
 
-                $today = new \DateTime();
-                $todayFormat = $today->format('Y-m-d');
-                $playlist = $playlistManager->selectPlaylistsByDay($todayFormat);
+            $today = new \DateTime();
+            $todayFormat = $today->format('Y-m-d');
+            $playlist = $playlistManager->selectPlaylistsByDay($todayFormat);
             if (!$playlist) {
                 $newPlaylistId = $playlistManager->createPlaylist($todayFormat);
             }
+
                 $trackManager = new TrackManager();
                 $track = [
                     'title' => $_POST['title'],
@@ -54,47 +52,21 @@ class TrackController extends AbstractController
                     'url' => $urlClean,
                     'playlist_id' => $playlist ? $playlist['id'] : $newPlaylistId,
                     'user_id' => $_SESSION['user']['id'],
+                    'nblike' => 0,
                 ];
                 $trackManager->insert($track);
                 header('Location:/Home/index/');
+
         }
-            return $this->twig->render('/Home/add.html.twig');
+        return $this->twig->render('/Home/add.html.twig');
     }
 
     public function top()
     {
         $top = new TrackManager();
         $tracks = $top->selectTracksLike();
-        return $this->twig->render('/Home/top.html.twig', [
+        return $this->twig->render('/Home/_top.html.twig', [
             'tracks' => $tracks
         ]);
-    }
-
-    public function addLike($trackId)
-    {
-        $trackManager = new TrackManager();
-        $track = $trackManager->selectOneById($trackId);
-        $nbLikeAfterClick = $track['nblike'] + 1;
-        $trackManager->addLike($trackId, $nbLikeAfterClick);
-        header('Location: /');
-    }
-
-    public function showLike($trackId)
-    {
-        $trackManager = new TrackManager();
-        $trackId = $_POST['id'];
-        $nbLike = $trackManager->selectOneById($trackId);
-    }
-
-    public function dislike($trackId)
-    {
-        $trackManager = new TrackManager();
-        $track = $trackManager->selectOneById($trackId);
-        $nbLikeAfterClick = $track['nblike'] - 1;
-        if ($nbLikeAfterClick < 0) {
-            $nbLikeAfterClick = 0;
-        }
-        $trackManager->dislike($trackId, $nbLikeAfterClick);
-        header('Location: /');
     }
 }

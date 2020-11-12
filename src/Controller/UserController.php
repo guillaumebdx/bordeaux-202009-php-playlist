@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 
@@ -23,14 +22,15 @@ class UserController extends AbstractController
     {
         $userManager = new UserManager();
         $user = $userManager->selectAllUsers();
+        $errorMessages = [];
         foreach ($user as $userData => $userPseudo) {
-
-
-
-            if ($userPseudo ['pseudo'] === $_POST['pseudo']) {
-                header('Location: /User/register');
+            if ($userPseudo['pseudo'] === $_POST['pseudo'] || $userPseudo['email'] === $_POST['email']) {
+                $errorMessages = 'Le compte existe déjà';
+                return $this->twig->render('/User/register.html.twig', [
+                    'errors' => $errorMessages,
+                ]);
             } else {
-                $errorMessages = [];
+
                 $userData = [];
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $formValidator = new FormValidator();
@@ -64,7 +64,7 @@ class UserController extends AbstractController
 
     public function check()
     {
-
+        var_dump($_SESSION);die;
         $userManager = new UserManager();
         $userData = $userManager->selectOneByPseudo($_POST['pseudo']);
 
@@ -75,6 +75,7 @@ class UserController extends AbstractController
             $_SESSION['user'] = $userData;
             return $this->twig->render('/Home/index.html.twig');
         }
+        $this->checkConnexion();
         header('Location: /User/connect');
     }
 

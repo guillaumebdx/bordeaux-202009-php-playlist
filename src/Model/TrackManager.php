@@ -26,13 +26,15 @@ class TrackManager extends AbstractManager
     {
         // prepared request
 
-        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (title, artist, url, playlist_id, user_id)
-         VALUES (:title, :artist, :url, :playlist_id, :user_id)");
+
+        $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (title, artist, url, playlist_id, user_id, nblike)
+         VALUES (:title, :artist, :url, :playlist_id, :user_id, :nblike)");
         $statement->bindValue(':title', $track['title'], \PDO::PARAM_STR);
         $statement->bindValue(':artist', $track['artist'], \PDO::PARAM_STR);
         $statement->bindValue(':url', $track['url'], \PDO::PARAM_STR);
         $statement->bindValue(':playlist_id', $track['playlist_id'], \PDO::PARAM_STR);
         $statement->bindValue(':user_id', $track['user_id'], \PDO::PARAM_STR);
+        $statement->bindValue(':nblike', 0, \PDO::PARAM_STR);
         if ($statement->execute()) {
             return (int)$this->pdo->lastInsertId();
         }
@@ -54,12 +56,12 @@ class TrackManager extends AbstractManager
 
         return $statement->execute();
     }
-    public function dislike($trackId, $nbLike)
+    /*public function dislike($trackId, $nbLike)
     {
         $statement = $this->pdo->query("UPDATE " . self::TABLE . " SET `nblike` = $nbLike WHERE id = $trackId");
 
         return $statement->execute();
-    }
+    }*/
 
     public function showLike($trackId)
     {

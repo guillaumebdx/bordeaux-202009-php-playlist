@@ -2,14 +2,21 @@
 
 
 {% block content %}
-    <?php session_start() ?>
+    <?php session_start();
+    if (!isset($_SESSION['user'])) {
+            header('Location: /User/connect');
+        } else {
+            header('Location: /');
+        }
+?>
+
+
     <h2>Connectes-toi</h2>
     <div>
         <h4><a href="/User/register" class="btn btn-link">Si tu n'es pas inscrit, viens-ici</a> </h4>
     </div>
-    <form action="/User/checkformconnect" method="post" >
+    <form action="/User/checkFormConnect" method="post" >
         <div class="container-sm">
-            {% endif %}
             <div class="row">
                 <div class="col-md-6">
                     <label for="pseudo" class="mt-5 {{ errors.pseudo ? 'is-invalid' : '' }}">Ton pseudo</label><br>
@@ -31,8 +38,15 @@
                 </div>
             </div>
         </div>
-        <button class="btn-grad mx-auto" type="submit">Ajouter</button>
+        <div class="mb-5">
+        <button class="btn-grad mx-auto" type="submit">Envoyer</button>
+        </div>
         </div>
         </div>
     </form>
+
+        <h6 class="text-secondary pt-5">Pas encore de compte ?
+                <a class="pl-1 underline " href="/User/register"> Inscris-toi !</a>
+        </h6>
+
 {% endblock %}

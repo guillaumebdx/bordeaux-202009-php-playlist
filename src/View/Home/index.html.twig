@@ -1,6 +1,11 @@
-{% extends 'layout.html.twig' %}
-
 {% block content %}
+    <?php session_start(); ?>
 
-    {% include 'Home/_dayPlaylist.html.twig' %}
+
+    <a mt-5 class="none" href="/track/add">
+        <button class="btn-grad" >Ajouter une musique</button>
+    </a>
+
+    {% include '/Home/_dayPlaylist.html.twig' %}
+    {% include '/Home/_top.html.twig'%}
 {% endblock %}
