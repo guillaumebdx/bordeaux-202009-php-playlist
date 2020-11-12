@@ -64,17 +64,16 @@ class UserController extends AbstractController
 
     public function check()
     {
-        var_dump($_SESSION);die;
         $userManager = new UserManager();
         $userData = $userManager->selectOneByPseudo($_POST['pseudo']);
-
-
+        
         // Todo to be update
         if ($userData && password_verify($_POST['password'], $userData['password'])) {
 
             $_SESSION['user'] = $userData;
             return $this->twig->render('/Home/index.html.twig');
         }
+        session_destroy();
         $this->checkConnexion();
         header('Location: /User/connect');
     }
