@@ -1,21 +1,46 @@
 {% block content %}
+    <section>
+        <div class="title-addPlay">
+            <h1>Lorem ipsum dolor<br> sit amet,<br>consecteur</h1>
+        </div>
+    </section>
 
-    <div class="dayPlaylistTitle text-white"><h1>Playlist du {{ playlist.date }}</h1></div>
+    <div class="button-addPlay" align="center">
+        <button type="button" class="btn-grad btn-primary" data-toggle="modal" data-target="#add_data_Modal" >Ajouter un morceau à la playlist</button>
+    </div>
 
-        <div class="small_container">
+    <div class="modal fade" id="add_data_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal1-title1" id="exampleModalLabel">Ajoute ta musique</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-            <div class="container-card">
+                {% include 'Home/add.html.twig' %}
+
+            </div>
+        </div>
+    </div>
+
+    <div class="dayPlaylistTitle text-white"><h3>Playlist du {{ playlist.date }}</h3></div>
+            <div class="row m-6 container-card">
+
                 {% for track in tracks %}
-                    <div class="card">
-                        <div class="vidBx" data-text={{ track.artist }}>
-                            <iframe id="video" src="https://www.youtube.com/embed/{{ track.url }}?enablejsapi=1&html5=1.?modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                    <div class="col-lg-4 col-md-6 card-play">
+                        <div class="embed-responsive embed-responsive-16by9 z-depth-5 box vidBx">
+                            <div class="content">
+                                <iframe class="embed-responsive-item z-depth-5" style="height: 101%" id="video" src="https://www.youtube.com/embed/{{ track.url }}?enablejsapi=1&html5=1.?modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                            </div>
                         </div>
+                        <div class="box contentBx">
+                            <div class="content">
 
-                        <div class="content">
-                            <div>
-
-                                <div class="title-card">{{ track.title }} - {{ track.artist }}</div>
-
+                                <div class="title-card" >{{ track.title }} - {{ track.artist }}</div>
                                 <div class="like-dislike-alignement">
                                 <div>
                                     <form class ="flex" action="/track/addlike/{{ track.id }}" method="POST">
@@ -32,19 +57,13 @@
                                             </div>
                                     </form>
                                 </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                     {% else %}
                         <h1 class="text-white">Il n'y a pas encore de playlist, sois le premier à ajouter un morceau !</h1>
-                        <a href="/track/add"><button class="btn btn-warning" >Ajouter une musique</button></a>
                 {% endfor %}
             </div>
         </div>
-
-
-
-
 {% endblock %}

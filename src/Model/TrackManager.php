@@ -26,7 +26,6 @@ class TrackManager extends AbstractManager
     {
         // prepared request
 
-
         $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (title, artist, url, playlist_id, user_id, nblike)
          VALUES (:title, :artist, :url, :playlist_id, :user_id, :nblike)");
         $statement->bindValue(':title', $track['title'], \PDO::PARAM_STR);
@@ -56,12 +55,7 @@ class TrackManager extends AbstractManager
 
         return $statement->execute();
     }
-    /*public function dislike($trackId, $nbLike)
-    {
-        $statement = $this->pdo->query("UPDATE " . self::TABLE . " SET `nblike` = $nbLike WHERE id = $trackId");
 
-        return $statement->execute();
-    }*/
 
     public function showLike($trackId)
     {

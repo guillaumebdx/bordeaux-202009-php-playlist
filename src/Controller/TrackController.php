@@ -21,6 +21,7 @@ class TrackController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      */
 
+
     public function checkConnexion()
     {
         if (!isset($_SESSION['user'])) {
