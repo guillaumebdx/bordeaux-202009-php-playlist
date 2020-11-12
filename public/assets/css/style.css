@@ -6,6 +6,7 @@
     --blue:#00fffa;
     --gradient: -webkit-linear-gradient(#079DFD, #EA10D4);
     --font-family-sans-serif: 'Raleway', sans serif;
+    --wcs: #F76B6B;
 }
 
 @font-face {
@@ -13,8 +14,12 @@
     src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
 }
 
+
 body {
     background-color: var(--background);
+    overflow-x: hidden;
+    margin-block-start: 7em;
+    margin: 1.2em 1.2em;
 }
 
 hr {
@@ -45,8 +50,8 @@ nav li a {
 .navbar {
     padding: 0.2em 0 0 1em;
     background-color: var(--background);
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
+    z-index: 10;
     top: 0;
     z-index: 2;
 }
@@ -68,10 +73,11 @@ nav .container {
     left: 0;
 }
 
-.logo::before {
+/* .logo::before {
     content: url("https://i.postimg.cc/Z5P8ZgS1/bcb-small.png");
-            /* LOGO PINK/BLUE url("https://i.postimg.cc/vBrJVT2k/logoxxs.png");*/
+            /* LOGO PINK/BLUE url("https://i.postimg.cc/vBrJVT2k/logoxxs.png");
 }
+*/
 
 .calendar::before {
     content: "Calendrier";
@@ -126,21 +132,26 @@ form {
 .btn-grad {
     display: flex;
     justify-content: center;
-    padding: 7px 70px;
     text-align: center;
     text-transform: uppercase;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 400;
     transition: 0.5s;
     background-size: 200% auto;
     color: white;
     border-radius: 50px;
+    border: none;
+    padding: 7px 70px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
     margin-top: 6em;
 }
 
 .btn-grad:hover {
     background-position: right center;
     color: #fff;
+    text-decoration: none;
+}
+
+.none:hover{
     text-decoration: none;
 }
 
@@ -162,19 +173,76 @@ button:active .btn-grad {
     font-family: 'Raleway', sans-serif;
     color: var(--blue);
 }
+.footer-flex{
+    display: flex;
+    align-content: center;
+}
+.fa-github{
+    color: white;
+}
+.wcs{
+    color: var(--wcs);
+}
+.wcs:hover{
+    color: white;
+    text-decoration: none;
+}
+.footer-btn{
+    background-image: linear-gradient(to right, #fc00ff 0%, #00dbde  51%, #fc00ff  100%)
+}
+
+
+.fas {
+    color: red;
+}
+
+.fas span{
+    color: black;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+/*.flex-add {
+    display: flex;
+    align-items: center;
+    margin-top: 60px;
+}*/
+
+.fa-arrow-left{
+    color: white;
+    margin-top: 60px;
+    position: absolute;
+    z-index: 1;
+}
+
+.fa-arrow-left:hover{
+    color: var(--secondary);
+}
+
+.h2-form{
+    position: relative;
+    z-index: 2;
+}
+
+h6.text-secondary{
+    content: var(--separator);
+    display: flex;
+    justify-content: center;
+}
+
+.underline{
+    color: #6c757d;
+}
+.underline:hover{
+    color: var(--secondary);
+    text-decoration: none;
+}
 
 /*--------For Day Playlist-------------------------*/
 
-
-.small_container{
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-
-    flex-wrap: wrap;
-    background-color: var(--background);
-}
 
 .modal-content {
     background-color: var(--background);
@@ -199,59 +267,33 @@ button:active .btn-grad {
 }
 
 .dayPlaylistTitle h3{
-
-    margin-left: 110px;
     background: -webkit-linear-gradient(#079DFD, #EA10D4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.container-card{
-    width: 1300px;
-    position: relative;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-.container-card .card-play{
-    position: relative;
-    margin: 0 30px 60px 30px;
-}
+
+
 .container-card .card-play .box{
-    width: 339px;
-    height: 130px;
     transition: 0.5s;
 }
 .container-card .card-play .box.vidBx{
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     z-index: 1;
-    transform: translateY(60px);
+    transform: translateY(30px);
 }
 
 .container-card .card-play .box.vidBx .content iframe{
-    width: 340px;
-    height: 200px;
-    border-radius: 4px;
+    border-radius: 12px;
     box-sizing: border-box;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
 }
-.container-card .card-play .box.vidBx .content h3{
-    margin: 10px 0 0;
-    padding: 0;
-    color: #FFF;
-    text-align: center;
-    font-size: 1.5em;
-}
+
 .container-card .card-play .box.contentBx{
     position: relative;
     background: #FFF;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 20px;
+    display: flex;
     box-sizing: border-box;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
     transform: translateY(-50px);
@@ -259,22 +301,20 @@ button:active .btn-grad {
     border-bottom-right-radius: 20px;
 }
 .container-card .card-play:hover .box.contentBx{
-    transform: translateY(60%);
+    transform: translateY(38%);
 }
-.container-card .card-play .box.contentBx .content .title-card{
+.container-card .card-play .box.contentBx .content {
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.box.contentBx .content{
+    width: 100%;
 }
 
-.container-card .card-play .box.contentBx .content .like{
-    margin: 15px 0 0;
-    display: flex;
-    text-decoration: none;
-    font-weight: 900;
-    color: #333;
-    flex-direction: row;
-    padding: 5px;
-    border: 1px solid #333;
+.container-card .card-play .box.contentBx .content .like-dislike-alignement{
+    padding-top: 0;
 }
 
 
@@ -385,5 +425,4 @@ button:active .btn-grad {
     .space{
         padding-right: 3em;
     }
-
 }
