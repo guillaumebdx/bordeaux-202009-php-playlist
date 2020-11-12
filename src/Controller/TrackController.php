@@ -25,11 +25,13 @@ class TrackController extends AbstractController
     {
         if (!isset($_SESSION['user'])) {
             header('Location: /User/connect');
+            exit();
         }
     }
 
     public function add()
     {
+
         $this->checkConnexion();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $playlistManager = new PlaylistManager();

@@ -2,14 +2,6 @@
 
 
 {% block content %}
-    <?php session_start();
-    if (!isset($_SESSION['user'])) {
-            header('Location: /User/connect');
-        } else {
-            header('Location: /');
-        }
-?>
-
 
     <h2>Connectes-toi</h2>
     <div>

@@ -62,22 +62,6 @@ class UserController extends AbstractController
         }
     }
 
-    public function check()
-    {
-        $userManager = new UserManager();
-        $userData = $userManager->selectOneByPseudo($_POST['pseudo']);
-        
-        // Todo to be update
-        if ($userData && password_verify($_POST['password'], $userData['password'])) {
-
-            $_SESSION['user'] = $userData;
-            return $this->twig->render('/Home/index.html.twig');
-        }
-        session_destroy();
-        $this->checkConnexion();
-        header('Location: /User/connect');
-    }
-
     public function checkFormConnect()
     {
         $errorMessages = [];
@@ -97,16 +81,16 @@ class UserController extends AbstractController
                     'userData' => $userData,
                 ]);
             }
-        } return $this->check();
-    }
-
-
-    public function checkConnexion()
-    {
-        if (!isset($_SESSION['user'])) {
-            header('Location: /User/connect');
-        } else {
-            header('Location: /');
         }
+        $userManager = new UserManager();
+        $userData = $userManager->selectOneByPseudo($_POST['pseudo']);
+
+        if ($userData && password_verify($_POST['password'], $userData['password'])) {
+
+            $_SESSION['user'] = $userData;
+            return $this->twig->render('/Home/index.html.twig');
+        }
+        header('Location: /User/connect');
     }
+
 }
