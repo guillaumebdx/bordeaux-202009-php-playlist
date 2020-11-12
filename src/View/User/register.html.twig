@@ -1,23 +1,41 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+    <?php session_start() ?>
     <h2>Inscris-toi gratuitement</h2>
     <h4>afin de poster ta chanson quotidienne</h4>
+    {% if errors %}
+    <h4><br>{{ errors }}</h4>
+    {% endif %}
     <form action="/user/add" method="post">
-        <input type="hidden" value="{{ user.id }}" name="id">
         <div class="container-sm">
             <div class="row">
                 <div class="col-md-6">
-                    <label for="pseudo" class="mt-5">Ton pseudo</label><br>
-                    <input class="w-100" type="text" value="{{ user.pseudo }}" name="pseudo" id="pseudo" placeholder="Shakira" required>
+                    <label for="pseudo" class="mt-5 {{ errors.pseudo ? 'is-invalid' : '' }} ">Ton pseudo</label><br>
+                    <input class="w-100" type="text" value="{{ user.pseudo ?? userData.pseudo }}" name="pseudo" id="pseudo" placeholder="Shakira">
+                    {% if errors.pseudo %}
+                    <div class="invalid-feedback">
+                        {{ errors.pseudo }}
+                    </div>
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="password" class="mt-5">Ton mot de passe</label><br>
-                    <input class="w-100" type="password" value="{{ user.password }}" name="password" id="password" placeholder="*****" required>
+                    <label for="password" class="mt-5 {{ errors.password ? 'is-invalid' : '' }} ">Ton mot de passe</label><br>
+                    <input class="w-100" type="password" value="{{ user.password }}" name="password" id="password" placeholder="*****" >
+                    {% if errors.password %}
+                        <div class="invalid-feedback">
+                            {{ errors.password }}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="col-md-12">
-                    <label for="email" class="mt-5">ici ton adresse email</label><br>
-                    <input class="w-100" type="email" value="{{ user.email }}" name="email" id="email" placeholder="Shakira@yahoo.com" required>
+                    <label for="email" class="mt-5 {{ errors.email ? 'is-invalid' : '' }} ">ici ton adresse email</label><br>
+                    <input class="w-100" type="email" value="{{ user.email ?? userData.email }}" name="email" id="email" placeholder="Shakira@yahoo.com" >
+                    {% if errors.email %}
+                        <div class="invalid-feedback">
+                            {{ errors.email }}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

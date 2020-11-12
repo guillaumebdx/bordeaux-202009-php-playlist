@@ -1,17 +1,40 @@
 {% extends 'layout.html.twig' %}
 
+
 {% block content %}
+    <?php session_start();
+    if (!isset($_SESSION['user'])) {
+            header('Location: /User/connect');
+        } else {
+            header('Location: /');
+        }
+?>
+
+
     <h2>Connectes-toi</h2>
-    <form action="/User/check" method="post" >
+    <div>
+        <h4><a href="/User/register" class="btn btn-link">Si tu n'es pas inscrit, viens-ici</a> </h4>
+    </div>
+    <form action="/User/checkFormConnect" method="post" >
         <div class="container-sm">
             <div class="row">
                 <div class="col-md-6">
-                    <label for="pseudo" class="mt-5">Ton pseudo</label><br>
-                    <input class="w-100" type="text" value="{{ user.pseudo }}" name="pseudo" id="pseudo" placeholder="Shakira" required>
+                    <label for="pseudo" class="mt-5 {{ errors.pseudo ? 'is-invalid' : '' }}">Ton pseudo</label><br>
+                    <input class="w-100" type="text" value="{{ user.pseudo ?? userData.pseudo }}" name="pseudo" id="pseudo" placeholder="Shakira">
+                    {% if errors.pseudo %}
+                        <div class="invalid-feedback">
+                            {{ errors.pseudo }}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="password" class="mt-5">Ton mot de passe</label><br>
-                    <input class="w-100" type="password" value="{{ user.password }}" name="password" id="password" placeholder="*****" required>
+                    <label for="password" class="mt-5 {{ errors.password ? 'is-invalid' : '' }}">Ton mot de passe</label><br>
+                    <input class="w-100" type="password" value="{{ user.password}}" name="password" id="password" placeholder="*****">
+                    {% if errors.password %}
+                        <div class="invalid-feedback">
+                            {{ errors.password }}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
