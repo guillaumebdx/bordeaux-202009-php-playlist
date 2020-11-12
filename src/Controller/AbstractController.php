@@ -40,4 +40,13 @@ abstract class AbstractController
         $this->twig->addGlobal('session', $_SESSION);
         $this->twig->addExtension(new DebugExtension());
     }
+
+    public function checkConnexion()
+    {
+        if (empty($_SESSION['user'])) {
+            header('Location: /User/connect');
+            exit();
+        }
+    }
+
 }
