@@ -1,0 +1,80 @@
+[1mdiff --git a/src/Controller/TrackController.php b/src/Controller/TrackController.php[m
+[1mindex c5ac5a8..2e2fa49 100644[m
+[1m--- a/src/Controller/TrackController.php[m
+[1m+++ b/src/Controller/TrackController.php[m
+[36m@@ -22,17 +22,8 @@[m [mclass TrackController extends AbstractController[m
+      */[m
+ [m
+ [m
+[31m-    public function checkConnexion()[m
+[31m-    {[m
+[31m-        if (!isset($_SESSION['user'])) {[m
+[31m-            header('Location: /User/connect');[m
+[31m-            exit();[m
+[31m-        }[m
+[31m-    }[m
+[31m-[m
+     public function add()[m
+     {[m
+[31m-[m
+         $this->checkConnexion();[m
+         if ($_SERVER['REQUEST_METHOD'] === 'POST') {[m
+             $playlistManager = new PlaylistManager();[m
+[1mdiff --git a/src/Controller/UserController.php b/src/Controller/UserController.php[m
+[1mindex fbbcd4d..06d92b4 100644[m
+[1m--- a/src/Controller/UserController.php[m
+[1m+++ b/src/Controller/UserController.php[m
+[36m@@ -62,7 +62,7 @@[m [mclass UserController extends AbstractController[m
+         }[m
+     }[m
+ [m
+[31m-    public function checkFormConnect()[m
+[32m+[m[32m    public function check()[m
+     {[m
+         $errorMessages = [];[m
+         $userData = [];[m
+[36m@@ -86,11 +86,14 @@[m [mclass UserController extends AbstractController[m
+         $userData = $userManager->selectOneByPseudo($_POST['pseudo']);[m
+ [m
+         if ($userData && password_verify($_POST['password'], $userData['password'])) {[m
+[31m-[m
+             $_SESSION['user'] = $userData;[m
+[31m-            return $this->twig->render('/Home/index.html.twig');[m
+[32m+[m[32m            header('Location: /');[m
+[32m+[m[32m            exit();[m
+         }[m
+[31m-        header('Location: /User/connect');[m
+[32m+[m[32m        return $this->twig->render('/User/connect.html.twig', [[m
+[32m+[m[32m            'errors' => $errorMessages,[m
+[32m+[m[32m            'userData' => $userData,[m
+[32m+[m[32m        ]);[m
+     }[m
+ [m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/src/View/Home/_dayPlaylist.html.twig b/src/View/Home/_dayPlaylist.html.twig[m
+[1mindex 61eefa9..ebbc934 100644[m
+[1m--- a/src/View/Home/_dayPlaylist.html.twig[m
+[1m+++ b/src/View/Home/_dayPlaylist.html.twig[m
+[36m@@ -21,7 +21,7 @@[m
+     </div>[m
+ [m
+     <div class="dayPlaylistTitle text-white">[m
+[31m-        <h1>Playlist du {{ playlist.date }}</h1>[m
+[32m+[m[32m        <h1>Playlist du {{ playlist.date ?? 'du jour'}}</h1>[m
+     </div>[m
+             <div class="row m-6 container-card">[m
+ [m
+[1mdiff --git a/src/View/User/connect.html.twig b/src/View/User/connect.html.twig[m
+[1mindex b11aa32..4fa6e3b 100644[m
+[1m--- a/src/View/User/connect.html.twig[m
+[1m+++ b/src/View/User/connect.html.twig[m
+[36m@@ -5,7 +5,7 @@[m
+ [m
+     <h2>Connectes-toi</h2>[m
+ [m
+[31m-    <form action="/User/checkformconnect" method="post" >[m
+[32m+[m[32m    <form action="/User/check" method="post" >[m
+         <div class="container-sm">[m
+             <div class="row">[m
+                 <div class="col-md-6">[m

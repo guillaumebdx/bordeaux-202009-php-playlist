@@ -16,6 +16,11 @@
     src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
 }
 
+@font-face {
+    font-family: 'Retroica';
+    src: url("/public/assets/css/Retroica.ttf");
+}
+
 p{
     font-family: 'Raleway', sans-serif;
 }
@@ -27,7 +32,6 @@ body {
     margin-block-start: 5em;
     position: relative;
     z-index: 10;
-
 }
 
 main{
