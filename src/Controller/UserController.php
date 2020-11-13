@@ -25,7 +25,7 @@ class UserController extends AbstractController
         $errorMessages = [];
         foreach ($user as $userData => $userPseudo) {
             if ($userPseudo['pseudo'] === $_POST['pseudo'] || $userPseudo['email'] === $_POST['email']) {
-                $errorMessages = 'Le compte existe déjà';
+                $errorMessages['alreadyRegistered'] = 'Le compte existe déjà';
                 return $this->twig->render('/User/register.html.twig', [
                     'errors' => $errorMessages,
                 ]);
@@ -60,9 +60,10 @@ class UserController extends AbstractController
                 }
             }
         }
+        $this->check();
     }
 
-    public function checkFormConnect()
+    public function check()
     {
         $errorMessages = [];
         $userData = [];
@@ -86,11 +87,14 @@ class UserController extends AbstractController
         $userData = $userManager->selectOneByPseudo($_POST['pseudo']);
 
         if ($userData && password_verify($_POST['password'], $userData['password'])) {
-
             $_SESSION['user'] = $userData;
-            return $this->twig->render('/Home/index.html.twig');
+            header('Location: /');
+            exit();
         }
-        header('Location: /User/connect');
+        return $this->twig->render('/User/connect.html.twig', [
+            'errors' => $errorMessages,
+            'userData' => $userData,
+        ]);
     }
 
 }
