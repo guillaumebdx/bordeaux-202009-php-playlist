@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+    <div id="top">
+        <h1 class="text-white font-weight-bold mb-5">Titre les plus aimés</h1>
+        <div class="row mb-5">
+
+            {% for track in tracks %}
+
+            <div class="col-xl-3 col-lg-4 col-md-12">
+
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item rounded-5" src="https://www.youtube.com/embed/{{ track.url }}?enablejsapi=1&html5=1.?modestbranding=1" style="height: 101%"
+                            allowfullscreen></iframe>
+                </div>
+                <div class="video">
+                    <h6 class="mt-4 mb-5 text-white">{{ track.title }} - {{ track.artist }} </h6>
+                    <div>
+                        <form class ="flex" action="/track/addlike/{{ track.id }}" method="POST">
+                            <i id="heart" class="far fa-heart fa-lg mr-2" data-nblike="{{ track.nblike }}" data-trackid="{{ track.id }}" ></i>
+                            <div class="likecounter" id="likecounter-{{ track.id }}">
+
+                                {% if track.nblike == 0 %}
+                                    <p></p>
+                                {% else %}
+                                    {{ track.nblike }}
+                                {% endif %}
+
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        {% endfor %}
+
+    </div>
+    </div>
+
+{% endblock %}

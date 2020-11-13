@@ -1,6 +1,14 @@
-{% extends 'layout.html.twig' %}
-
 {% block content %}
 
-    {% include 'Home/_dayPlaylist.html.twig' %}
+<div>
+    <img class="homeimg" src="/assets/images/wave.svg"
+         alt="img"
+         height="750px"
+         width=1300px>
+    <p class="home-text">Laissez-vous porter par la musique.</p>
+</div>
+
+    {% include '/Home/_dayPlaylist.html.twig' %}
+    {% set tracks = tops %}
+    {% include '/Home/_top.html.twig'%}
 {% endblock %}

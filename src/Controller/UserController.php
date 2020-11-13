@@ -1,10 +1,10 @@
 <?php
 
-
 namespace App\Controller;
 
 
 use App\Model\UserManager;
+use App\Service\FormValidator;
 
 class UserController extends AbstractController
 {
@@ -17,35 +17,84 @@ class UserController extends AbstractController
     {
         return $this->twig->render('/User/connect.html.twig');
     }
+
     public function add()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $userManager = new UserManager();
-            //TODO check if username already exist
-            $userData = [];
-            $userData ['pseudo'] = $_POST['pseudo'];
-            $userData ['email'] = $_POST['email'];
-            $userData ['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $userId = $userManager->createUser($userData);
-            //TODO login directly
-            header('Location: /');
-        } else {
-            echo 'Methode interdite';
+        $userManager = new UserManager();
+        $user = $userManager->selectAllUsers();
+        $errorMessages = [];
+        foreach ($user as $userData => $userPseudo) {
+            if ($userPseudo['pseudo'] === $_POST['pseudo'] || $userPseudo['email'] === $_POST['email']) {
+                $errorMessages['alreadyRegistered'] = 'Le compte existe déjà';
+                return $this->twig->render('/User/register.html.twig', [
+                    'errors' => $errorMessages,
+                ]);
+            } else {
+
+                $userData = [];
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $formValidator = new FormValidator();
+                    $formValidator->setFields($_POST);
+                    $formValidator->checkField();
+                    $errorMessages = $formValidator->getErrors();
+                    if (empty($errorMessages)) {
+                        $userManager = new UserManager();
+                        //TODO check if username already exist
+                        $userData ['pseudo'] = $_POST['pseudo'];
+                        $userData ['email'] = $_POST['email'];
+                        $userData ['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                        $userId = $userManager->createUser($userData);
+                        //TODO login directly
+
+                        header('Location: /');
+                    } else {
+                        $userData ['pseudo'] = $_POST['pseudo'];
+                        $userData ['email'] = $_POST['email'];
+                        $userData ['password'] = $_POST['password'];
+
+                        return $this->twig->render('/User/register.html.twig', [
+                            'errors' => $errorMessages,
+                            'userData' => $userData,
+                        ]);
+                    }
+                }
+            }
         }
+        $this->check();
     }
 
     public function check()
     {
+        $errorMessages = [];
+        $userData = [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $formValidator = new FormValidator();
+            $formValidator->setFields($_POST);
+            $formValidator->checkField();
+            $errorMessages = $formValidator->getErrors();
+
+            if (!empty($errorMessages)) {
+                $userData['pseudo'] = $_POST['pseudo'];
+                $userData['password'] = $_POST['password'];
+
+                return $this->twig->render('/User/connect.html.twig', [
+                    'errors' => $errorMessages,
+                    'userData' => $userData,
+                ]);
+            }
+        }
         $userManager = new UserManager();
         $userData = $userManager->selectOneByPseudo($_POST['pseudo']);
 
-        // Todo to be update
-
-        if (password_verify($_POST['password'], $userData['password'])) {
+        if ($userData && password_verify($_POST['password'], $userData['password'])) {
             $_SESSION['user'] = $userData;
             header('Location: /');
-        } else {
-            header('Location: /user/connect');
+            exit();
         }
+        return $this->twig->render('/User/connect.html.twig', [
+            'errors' => $errorMessages,
+            'userData' => $userData,
+        ]);
     }
+
 }
