@@ -3,12 +3,11 @@
 {% block content %}
     {% if errors.alreadyRegistered %}
         <h4>{{ errors.alreadyRegistered }}</h4>
-    {% elseif %}
+    {% else %}
         <h2>Inscris-toi gratuitement</h2>
         <h4>afin de poster ta chanson quotidienne</h4>
     {% endif %}
 
-    {% endif %}
     <form action="/user/add" method="post">
         <div class="container-sm">
             <div class="row">
