@@ -29,6 +29,7 @@ class TrackController extends AbstractController
         $nbTracks = $check->nbTrackofTheDay($todayFormat);
         $nbTracks = (int)$nbTracks['nb_track'];
         if ($nbTracks >= $nbTracksMax) {
+            $_SESSION['error'] = 'Les ' . $nbTracksMax . ' chansons du jour ont déjà été postés';
             header('Location: / ');
         }
         $checkData = $check->chekingTrack($todayFormat);
@@ -38,7 +39,14 @@ class TrackController extends AbstractController
             $urlClean = substr(array_pop($urlPreClean), 0, 11);
             foreach ($checkData as $track => $trackid) {
                 if ($trackid['title'] === $_POST['title'] && $trackid['url'] === $urlClean) {
-                    // TODO retour message session';
+                    $_SESSION['error'] = 'Ta musique existe déjà, mets une autre musique';
+                    header('Location: /');
+                    exit();
+                }
+                if ($_SESSION['user']['id'] === $trackid['user_id']) {
+                    $_SESSION['error'] = 'Tu as déjà posté une musique aujourd\'hui';
+                    header('Location: /');
+                    exit();
                 }
             }
             $playlist = $check->selectPlaylistsByDay($todayFormat);
@@ -55,9 +63,10 @@ class TrackController extends AbstractController
                 'nblike' => 0,
             ];
             $trackManager->insert($track);
+            $_SESSION['error'] = '';
             header('Location: /');
         }
-        // TODO 'retour message session';
+
     }
 
     public function top()

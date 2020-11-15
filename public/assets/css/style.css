@@ -46,7 +46,7 @@ h6 {
 img.homeimg{
     width: 100%;
     position: absolute;
-    z-index: 1;
+    z-index: -5;
     top:2em;
 
 }
@@ -153,6 +153,11 @@ h4
     background: -webkit-linear-gradient(#079DFD, #EA10D4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+h3 {
+    text-align: center;
+    color: white;
 }
 
 label[for=title],

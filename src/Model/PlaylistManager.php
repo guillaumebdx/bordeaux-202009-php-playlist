@@ -10,7 +10,6 @@ class PlaylistManager extends AbstractManager
      *
      */
     const TABLE = 'playlist';
-    const TRACK = 'track';
 
     /**
      *  Initializes this class.
@@ -40,7 +39,7 @@ class PlaylistManager extends AbstractManager
     public function nbTrackofTheDay($date)
     {
         $query = "SELECT p.date, COUNT(*) AS nb_track 
-    FROM " . self::TABLE . " p JOIN " . self::TRACK . " t 
+    FROM " . self::TABLE . " p JOIN " . TrackManager::TABLE . " t 
     ON t.playlist_id=p.id WHERE p.date='$date'";
         $statment = $this->pdo->prepare($query);
         $statment->bindValue(":date", $date, \PDO::PARAM_STR);
@@ -50,7 +49,7 @@ class PlaylistManager extends AbstractManager
     public function chekingTrack($date)
     {
         $statement = $this->pdo->prepare(
-            "SELECT t.title, t.artist, t.url, t.playlist_id, t.user_id FROM " . self::TRACK . " t 
+            "SELECT t.title, t.artist, t.url, t.playlist_id, t.user_id FROM " . TrackManager::TABLE . " t 
         JOIN " . self::TABLE . " p ON t.playlist_id = p.id WHERE p.date = '$date'"
         );
         $statement->bindValue(':date', $date, \PDO::PARAM_STR);
