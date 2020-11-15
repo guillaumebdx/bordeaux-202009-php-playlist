@@ -97,4 +97,11 @@ class UserController extends AbstractController
         ]);
     }
 
+    public function disconnect()
+    {
+        session_destroy();
+        header('Location: /');
+        exit();
+    }
+
 }
