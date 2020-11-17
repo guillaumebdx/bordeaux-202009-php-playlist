@@ -86,11 +86,14 @@ class UserController extends AbstractController
         $userData = $userManager->selectOneByPseudo($_POST['pseudo']);
 
         if ($userData && password_verify($_POST['password'], $userData['password'])) {
-
             $_SESSION['user'] = $userData;
-            return $this->twig->render('/Home/index.html.twig');
+            header('Location: /');
+            exit();
         }
-        header('Location: /User/connect');
+        return $this->twig->render('/User/connect.html.twig', [
+            'errors' => $errorMessages,
+            'userData' => $userData,
+        ]);
     }
 
 }

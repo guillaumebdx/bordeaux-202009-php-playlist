@@ -21,15 +21,7 @@ class TrackController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      */
 
-
-    public function checkConnexion()
-    {
-        if (!isset($_SESSION['user'])) {
-            header('Location: /User/connect');
-            exit();
-        }
-    }
-
+    
     public function add()
     {
 
@@ -72,4 +64,6 @@ class TrackController extends AbstractController
             'tracks' => $tracks
         ]);
     }
+
+
 }
