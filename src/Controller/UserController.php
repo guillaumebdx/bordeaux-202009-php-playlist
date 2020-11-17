@@ -108,6 +108,16 @@ class UserController extends AbstractController
         ]);
     }
 
+    public function showUsersTotalTracks()
+    {
+        $userManager = new UserManager();
+        $userTotalTracks = $userManager->selectUserTotalTracksById();
+        return $this->twig->render('/Home/explorer.html.twig', [
+            'users' => $userTotalTracks,
+        ]);
+    }
+    
+
     public function disconnect()
     {
         session_destroy();
@@ -118,9 +128,11 @@ class UserController extends AbstractController
     public function showAllTracksByProfil($id)
     {
         $userManager = new UserManager();
-        $profils = $userManager->selectAllTracksByProfil($id);
+        $tracks = $userManager->selectAllTracksByProfil($id);
+        $pseudo = $tracks[0]['pseudo'];
         return $this->twig->render('Home/_profil.html.twig', [
-            'profils' => $profils,
+            'tracks' => $tracks,
+            'pseudo' => $pseudo,
         ]);
 
     }

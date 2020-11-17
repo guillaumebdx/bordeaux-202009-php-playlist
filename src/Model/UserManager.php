@@ -38,10 +38,24 @@ class UserManager extends AbstractManager
         return $statement->fetchAll();
     }
 
+
     public function selectAllTracksByProfil($id)
     {
         $statement = $this->pdo->query("SELECT t.id, t.title, t.artist, t.url, t.nblike, t.user_id, u.pseudo, u.is_admin FROM " . TrackManager::TABLE . " t JOIN " . self::TABLE . " u ON t.user_id=u.id WHERE user_id= ". $id ." ORDER BY nblike DESC");
         return $statement->fetchAll();
     }
+
+    public function selectUserTotalTracksById()
+    {
+        $statement = $this->pdo->query("
+                SELECT u.id, u.pseudo, (SELECT COUNT(*) FROM " . TrackManager::TABLE . " t WHERE t.user_id=u.id) AS nb_track
+                FROM " . self::TABLE  . " u
+                JOIN " . TrackManager::TABLE . " t ON t.user_id=u.id
+                GROUP BY u.id
+                ORDER BY nb_track DESC");
+
+        return $statement->fetchAll();
+    }
+
 }
 
