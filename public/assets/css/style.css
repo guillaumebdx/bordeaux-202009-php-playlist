@@ -46,7 +46,7 @@ h6 {
 img.homeimg{
     width: 100%;
     position: absolute;
-    z-index: 1;
+    z-index: -5;
     top:2em;
 
 }
@@ -144,6 +144,10 @@ li.nav-item.space-home {
 
 .connexion::before {
     content: "Connexion";
+}
+
+.deconnexion::before {
+    content: "Déconnexion";
 }
 
 h2,
@@ -481,6 +485,7 @@ div.embed-responsive.embed-responsive-16by9{
         content: url("https://i.postimg.cc/tJknfvKC/dicover-sm.png");
     }
 
+    .deconnexion::before,
     .connexion::before {
         content: url("https://i.postimg.cc/kg0Gjd2v/user-sm.png");
     }

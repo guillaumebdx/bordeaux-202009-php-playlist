@@ -1,7 +1,11 @@
 {% block content %}
 
     <div class="button-addPlay">
+        {% if session.user %}
         <button type="button" class="btn-grad btn-primary" data-toggle="modal" data-target="#add_data_Modal" >Ajouter un morceau à la playlist</button>
+        {% else %}
+        <a href="/User/connect" class="btn-grad btn-primary" role="button">Ajouter un morceau à la playlist</a>
+        {% endif %}
     </div>
 
     <div class="modal fade" id="add_data_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -22,7 +26,7 @@
 
     <div class="dayPlaylistTitle text-white">
         {% if playlist.date %}
-        <h1>Playlist du {{ playlist.date }}</h1>
+        <h1>Playlist du {{ playlist.date|date("d-m-Y") }}</h1>
         {% endif %}
     </div>
             <div class="row m-6 container-card">
