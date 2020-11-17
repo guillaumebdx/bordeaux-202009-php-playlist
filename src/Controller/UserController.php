@@ -115,4 +115,13 @@ class UserController extends AbstractController
         exit();
     }
 
+    public function showAllTracksByProfil($id)
+    {
+        $userManager = new UserManager();
+        $profils = $userManager->selectAllTracksByProfil($id);
+        return $this->twig->render('Home/_profil.html.twig', [
+            'profils' => $profils,
+        ]);
+
+    }
 }
