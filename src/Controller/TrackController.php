@@ -56,6 +56,7 @@ class TrackController extends AbstractController
             ];
             $trackManager->insert($track);
             header('Location: /');
+            exit();
         }
         // TODO 'retour message session';
     }
