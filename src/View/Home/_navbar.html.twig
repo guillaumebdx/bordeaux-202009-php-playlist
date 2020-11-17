@@ -24,7 +24,7 @@
                     <a class="nav-link calendar" href="#calendar" ></a>
                 </li>
                 <li class="nav-item space">
-                    <a class="nav-link top " href="/track/top"></a>
+                    <a class="nav-link top " href="#top"></a>
                 </li>
                 <li class="nav-item space-home">
                     <a class="nav-link home " href="/"></a>
@@ -32,9 +32,15 @@
                 <li class="nav-item space">
                     <a class="nav-link discover" href="#discover"></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link connexion" href="/user/connect"></a>
-                </li>
+                {% if session.user %}
+                    <li class="nav-item">
+                        <a class="nav-link deconnexion" href="/user/disconnect"></a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link connexion" href="/user/connect"></a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>

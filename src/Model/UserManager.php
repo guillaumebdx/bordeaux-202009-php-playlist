@@ -37,5 +37,18 @@ class UserManager extends AbstractManager
         $statement->execute();
         return $statement->fetchAll();
     }
+
+    public function selectUserTotalTracksById()
+    {
+        $statement = $this->pdo->query("
+                SELECT u.id, u.pseudo, (SELECT COUNT(*) FROM " . TrackManager::TABLE . " t WHERE t.user_id=u.id) AS nb_track
+                FROM " . self::TABLE  . " u
+                JOIN " . TrackManager::TABLE . " t ON t.user_id=u.id
+                GROUP BY u.id
+                ORDER BY nb_track DESC");
+
+        return $statement->fetchAll();
+    }
+
 }
 

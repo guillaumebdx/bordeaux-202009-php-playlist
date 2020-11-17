@@ -65,6 +65,7 @@ class TrackController extends AbstractController
             $trackManager->insert($track);
             $_SESSION['error'] = '';
             header('Location: /');
+            exit();
         }
 
     }
@@ -77,4 +78,6 @@ class TrackController extends AbstractController
             'tracks' => $tracks
         ]);
     }
+
+
 }

@@ -82,7 +82,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 
 // LIKES //
-    const likes = document.getElementsByClassName('fa-heart');
+const likes = document.getElementsByClassName('fa-heart');
 
 for (let i = 0; i < likes.length; i++) {
     likes[i].addEventListener('click', (event) => {

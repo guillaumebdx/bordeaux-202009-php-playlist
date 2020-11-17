@@ -146,6 +146,10 @@ li.nav-item.space-home {
     content: "Connexion";
 }
 
+.deconnexion::before {
+    content: "Déconnexion";
+}
+
 h2,
 h4
 {
@@ -499,6 +503,7 @@ div.embed-responsive.embed-responsive-16by9{
         content: url("https://i.postimg.cc/tJknfvKC/dicover-sm.png");
     }
 
+    .deconnexion::before,
     .connexion::before {
         content: url("https://i.postimg.cc/kg0Gjd2v/user-sm.png");
     }
