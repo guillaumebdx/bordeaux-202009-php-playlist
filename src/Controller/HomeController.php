@@ -37,7 +37,6 @@ class HomeController extends AbstractController
             'tracks' => $tracks,
             'playlist' => $playlist,
             'tops' => $tops,
-
         ]);
     }
 }

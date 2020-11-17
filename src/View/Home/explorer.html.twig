@@ -1,1 +1,11 @@
-{{ dump(users) }}
+
+{% extends 'layout.html.twig' %}
+{% block content %}
+    {% for user in users %}
+        <div class="">
+            <a href="../User/showAllTracksByProfil/{{ user.id }}">{{ user.pseudo }} - {{ user.nb_track }}</a>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+
