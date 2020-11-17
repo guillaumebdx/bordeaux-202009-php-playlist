@@ -10,8 +10,6 @@ use App\Model\TrackManager;
 
 class TrackController extends AbstractController
 {
-
-
     /**
      * Display item creation page
      *
@@ -21,39 +19,46 @@ class TrackController extends AbstractController
      * @throws \Twig\Error\SyntaxError
      */
 
-    
     public function add()
     {
-
         $this->checkConnexion();
+        $nbTracksMax = 10;
+        $today = new \DateTime();
+        $todayFormat = $today->format('Y-m-d');
+        $check = new PlaylistManager();
+        $nbTracks = $check->nbTrackofTheDay($todayFormat);
+        $nbTracks = (int)$nbTracks['nb_track'];
+        if ($nbTracks >= $nbTracksMax) {
+            header('Location: / ');
+        }
+        $checkData = $check->chekingTrack($todayFormat);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $playlistManager = new PlaylistManager();
-
             $url = $_POST['url'];
             $urlPreClean = explode("watch?v=", $url);
             $urlClean = substr(array_pop($urlPreClean), 0, 11);
-
-            $today = new \DateTime();
-            $todayFormat = $today->format('Y-m-d');
-            $playlist = $playlistManager->selectPlaylistsByDay($todayFormat);
-            if (!$playlist) {
-                $newPlaylistId = $playlistManager->createPlaylist($todayFormat);
+            foreach ($checkData as $track => $trackid) {
+                if ($trackid['title'] === $_POST['title'] && $trackid['url'] === $urlClean) {
+                    // TODO retour message session';
+                }
             }
-
-                $trackManager = new TrackManager();
-                $track = [
-                    'title' => $_POST['title'],
-                    'artist' => $_POST['artist'],
-                    'url' => $urlClean,
-                    'playlist_id' => $playlist ? $playlist['id'] : $newPlaylistId,
-                    'user_id' => $_SESSION['user']['id'],
-                    'nblike' => 0,
-                ];
-                $trackManager->insert($track);
-                header('Location:/Home/index/');
-
+            $playlist = $check->selectPlaylistsByDay($todayFormat);
+            if (!$playlist) {
+                $newPlaylistId = $check->createPlaylist($todayFormat);
+            }
+            $trackManager = new TrackManager();
+            $track = [
+                'title' => $_POST['title'],
+                'artist' => $_POST['artist'],
+                'url' => $urlClean,
+                'playlist_id' => $playlist ? $playlist['id'] : $newPlaylistId,
+                'user_id' => $_SESSION['user']['id'],
+                'nblike' => 0,
+            ];
+            $trackManager->insert($track);
+            header('Location: /');
+            exit();
         }
-        return $this->twig->render('/Home/add.html.twig');
+        // TODO 'retour message session';
     }
 
     public function top()
