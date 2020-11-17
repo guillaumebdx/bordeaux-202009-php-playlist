@@ -21,7 +21,6 @@ class PlaylistManager extends AbstractManager
 
     public function selectPlaylistsByDay($date)
     {
-
         return $this->pdo->query("SELECT * FROM   $this->table  WHERE date = '$date'")->fetch();
     }
 
