@@ -9,6 +9,8 @@
     --wcs: #F76B6B;
     --red: #B80036;
     --grey: #7c7b7b;
+    --bgcard: #262525;
+
 }
 
 @font-face {
@@ -390,6 +392,12 @@ div.embed-responsive.embed-responsive-16by9{
 .row{
     margin-right: 0;
     margin-left: 0;
+}
+div.one.card{
+    background-color: var(--bgcard);
+    border-radius: 10px;
+
+
 }
 
 @media screen and (min-width: 1400px){
