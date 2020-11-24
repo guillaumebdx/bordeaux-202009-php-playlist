@@ -134,7 +134,7 @@ class UserController extends AbstractController
     {
         $id = $_SESSION['user']['id'];
         $userManager = new UserManager();
-        $userTotalTracks = $userManager->selectUserTotalTracksById();
+        $userManager->selectUserTotalTracksById();
         $tracks = $userManager->selectAllTracksByProfil($id);
         $pseudo = $_SESSION['user']['pseudo'];
         $nbtracks = 0;
