@@ -104,8 +104,5 @@ for (let i = 0; i < likes.length; i++) {
             likes[i].classList.add('fas'),
         )
 
-    })
+    });
 }
-// Data Picker Initialization
-$('.datepicker').datepicker({ min: new Date(2015,3,20)
-})

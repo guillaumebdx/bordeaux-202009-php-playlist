@@ -58,6 +58,7 @@ class UserController extends AbstractController
                         $userData ['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
                         $userId = $userManager->createUser($userData);
                         header('Location: /');
+                        exit();
                     } else {
                         $userData ['pseudo'] = $_POST['pseudo'];
                         $userData ['email'] = $_POST['email'];
