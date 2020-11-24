@@ -67,6 +67,7 @@ class TrackController extends AbstractController
             header('Location: /');
             exit();
         }
+
     }
 
     public function top()
@@ -78,6 +79,7 @@ class TrackController extends AbstractController
         ]);
     }
 
+
     public function delete()
     {
         if (isset($_POST['delete_btn'])) {
@@ -88,4 +90,5 @@ class TrackController extends AbstractController
             exit();
         }
     }
+
 }
