@@ -135,6 +135,17 @@ class UserController extends AbstractController
             'tracks' => $tracks,
             'pseudo' => $pseudo,
         ]);
+    }
 
+    public function showProfil()
+    {
+        $id = $_SESSION['user']['id'];
+        $userManager = new UserManager();
+        $tracks = $userManager->selectAllTracksByProfil($id);
+        $pseudo = $tracks[0]['pseudo'];
+        return $this->twig->render('User/profile.html.twig', [
+            'tracks' => $tracks,
+            'pseudo' => $pseudo,
+        ]);
     }
 }
