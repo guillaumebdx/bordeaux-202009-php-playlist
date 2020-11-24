@@ -141,11 +141,25 @@ class UserController extends AbstractController
     {
         $id = $_SESSION['user']['id'];
         $userManager = new UserManager();
+        $userTotalTracks = $userManager->selectUserTotalTracksById();
         $tracks = $userManager->selectAllTracksByProfil($id);
-        $pseudo = $tracks[0]['pseudo'];
+        $pseudo = $_SESSION['user']['pseudo'];
+        $nbtracks = 0;
+        foreach($tracks as $nbUserTrack) {
+            $nbtracks += 1;
+        }
+        if(!empty($tracks)){
+            $pseudo = $tracks[0]['pseudo'];
+            $error =[];
+        } else {
+            $_SESSION['error'] = "Tu n'as pas encore ajouté de musique... 😔";
+            $error = $_SESSION['error'];
+        }
         return $this->twig->render('User/profile.html.twig', [
             'tracks' => $tracks,
             'pseudo' => $pseudo,
+            'error' => $error,
+            'nbtrack' => $nbtracks,
         ]);
     }
 }

@@ -33,18 +33,19 @@
                     <a class="nav-link discover" href="/user/showUsersTotalTracks"></a>
                 </li>
                 {% if session.user %}
+                    <li class="nav-item space-user">
+                        <a class="nav-link deconnexion" href="/user/disconnect"></a>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/user/showProfil">
-                        <i class="fas fa-user"></i>
+                        <a class="nav-link profil" href="/user/showProfil">
+                        <i class="fas fa-user fa-lg"></i>
                             </a>
 
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link deconnexion" href="/user/disconnect">Déconnexion</a>
-                    </li>
+
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link connexion" href="/user/connect">Connexion</a>
+                        <a class="nav-link connexion" href="/user/connect"></a>
                     </li>
                 {% endif %}
             </ul>
