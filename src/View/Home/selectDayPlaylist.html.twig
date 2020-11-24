@@ -1,12 +1,13 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
-<h1>les titre de la playlist sélectionnée</h1>
+    <div style="height: 80px"></div>
+    <h1 class="text-white font-weight-bold mb-5">Sélectionne ta playlist</h1>
     <form action="/playlist/playlistByDay" method="POST">
-        <div class="md-form md-outline input-with-post-icon datepicker" style="color: white">
-            <input placeholder="Select date" type="date" name="date" id="example" class="form-control">
-        </div>
+
+        <input type="date" class="date" name="date"
+               value="{{ today }}"
+               min="2020-10-26" max="{{ today }}" placeholder="{{ today }}">
         <div>
         <button class="btn-grad mx-auto" type="submit" name="insert" id="insert" value="Insert">Envoyer</button>
         </div>
@@ -44,6 +45,6 @@
         </div>
     </div>
     {% else %}
-        <h1 class="text-white">Sélctione ta playlist</h1>
+
     {% endfor %}
 {% endblock %}

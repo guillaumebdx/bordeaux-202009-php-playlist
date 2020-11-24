@@ -2,14 +2,14 @@
 
 
 {% block content %}
-
+    <div style="height: 80px"></div>
     <h2>Connecte-toi</h2>
 
     <form action="/User/check" method="post" >
         <div class="container-sm">
             <div class="row">
                 <div class="col-md-6">
-                    <label for="pseudo" class="mt-5 {{ errors.pseudo ? 'is-invalid' : '' }}">Ton pseudo</label><br>
+                    <label for="pseudo" class="mt-5 {{ errors.pseudo ? 'is-invalid' : '' }}">Pseudo</label><br>
                     <input class="w-100" type="text" value="{{ user.pseudo ?? userData.pseudo }}" name="pseudo" id="pseudo" placeholder="Shakira">
                     {% if errors.pseudo %}
                         <div class="invalid-feedback">
@@ -18,7 +18,7 @@
                     {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="password" class="mt-5 {{ errors.password ? 'is-invalid' : '' }}">Ton mot de passe</label><br>
+                    <label for="password" class="mt-5 {{ errors.password ? 'is-invalid' : '' }}">Mot de passe</label><br>
                     <input class="w-100" type="password" value="{{ user.password}}" name="password" id="password" placeholder="*****">
                     {% if errors.password %}
                         <div class="invalid-feedback">

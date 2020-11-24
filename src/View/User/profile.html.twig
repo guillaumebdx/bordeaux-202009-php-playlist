@@ -1,12 +1,31 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div style="height: 80px"></div>
-    <div id="top">
-        <h1 class="text-white font-weight-bold mb-5">Titre les plus aimés</h1>
-        <div class="row mb-5">
 
-            {% for track in tracks %}
+    <h3 class="text-white text-center mb-5">Profil</h3>
+        <div class="avatar">
+            <img class="rounded-circle" src="https://i.pravatar.cc/225" alt="photo de profil">
+            <h3 class="ml-5">{{ pseudo }}</h3>
+            <div class="center pl-5">
+                <h5 class="text-danger">{{ nbtrack }}</h5>
+                <h5 class="text-white"> Musiques </h5>
+                <h5 class="text-white "> ajoutées </h5>
+            </div>
+
+
+
+
+        </div>
+
+
+    <h3 class="ml-5 mt-5">Mes ajouts</h3>
+    <div class="row my-5">
+
+        {% if error %}
+         <p class="text-white mx-auto display-4"> {{error}} </p>
+
+        {% endif %}
+        {% for track in tracks %}
 
             <div class="col-xl-3 col-lg-4 col-md-12">
 
@@ -19,7 +38,7 @@
                     <div>
                         <form class ="flex" action="/track/addlike/{{ track.id }}" method="POST">
                             {% if session %}
-                            <i id="heart" class="far fa-heart fa-lg mr-2" data-nblike="{{ track.nblike }}" data-trackid="{{ track.id }}" ></i>
+                                <i id="heart" class="far fa-heart fa-lg mr-2" data-nblike="{{ track.nblike }}" data-trackid="{{ track.id }}" ></i>
                             {% else  %}
                                 <i id="heart" class="fas fa-heart fa-lg mr-2" ></i>
 
@@ -45,5 +64,13 @@
 
     </div>
     </div>
+
+
+
+
+
+
+
+
 
 {% endblock %}

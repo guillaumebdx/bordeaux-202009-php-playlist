@@ -3,13 +3,16 @@
     --separator: #4F4F4F;
     --primary: #079DFD;
     --secondary: #c1c1c1;
-    --blue:#00fffa;
+    --blue:#0000c6;
     --gradient: -webkit-linear-gradient(#079DFD, #EA10D4);
     --font-family-sans-serif: 'Raleway', sans serif;
     --wcs: #F76B6B;
     --red: #B80036;
     --grey: #7c7b7b;
     --bgcard: #262525;
+    --pink: #F000D1;
+    --purple:#6000cb;
+    --blue2: #2e02c8;
 
 }
 
@@ -39,10 +42,21 @@ body {
 main{
     margin-inline-start: 1.6em;
     margin-inline-end: 1.6em;
+    min-height: calc(85vh - 70px);
 }
+
 
 h6 {
     font-size: 1.1rem;
+}
+
+
+.text-danger{
+    color: var(--pink) !important;
+}
+
+.text-warning{
+    color: var(--blue2) !important;
 }
 
 img.homeimg{
@@ -103,6 +117,14 @@ nav li a {
     padding-right: 4em;
 }
 
+.space-user{
+    padding-right: 1em;
+}
+
+i.fas.fa-user{
+    padding-top: 0.15em;
+}
+
 .navbar {
     padding: 0.2em 0 0 1em;
     background-color: var(--background);
@@ -144,11 +166,11 @@ li.nav-item.space-home {
     content: "Explorer";
 }
 
-.connexion::before {
+.connexion::before{
     content: "Connexion";
 }
 
-.deconnexion::before {
+.deconnexion::before{
     content: "Déconnexion";
 }
 
@@ -162,22 +184,10 @@ h4
 }
 
 h3 {
-    text-align: center;
+    /*text-align: center;*/
     color: white;
 }
-input.input-with-post-icon datepicker{
-    color: white;
-    background-color: white;
-}
-input.form-control {
-    margin-left: 33%;
-    margin-right: 33%;
-    width: 33%;
-    background-color: #191919;
-    color: whitesmoke;
-    border-style: none;
-    outline: none;
-}
+
 label[for=title],
 label[for=artist],
 label[for=url],
@@ -236,6 +246,18 @@ input {
     color: white;
 }
 
+::-webkit-calendar-picker-indicator {filter: invert(100%);}
+::-webkit-datetime-edit-year-field { color: white; }
+input[type="date" ] {
+    margin-left: 33%;
+    margin-right: 33%;
+    width: 33%;
+    color: white;
+
+
+}
+
+
 button:active .btn-grad {
     outline: none;
     border: none;
@@ -245,10 +267,7 @@ button:active .btn-grad {
     font-family: 'Raleway', sans-serif;
     color: var(--blue);
 }
-.footer-flex{
-    display: flex;
-    align-content: center;
-}
+
 .fa-github{
     color: white;
 }
@@ -259,8 +278,9 @@ button:active .btn-grad {
     color: white;
     text-decoration: none;
 }
-.footer-btn{
-    background-image: linear-gradient(to right, #d40086 0%, #00dbde  51%, #fc00ff  100%)
+
+footer{
+    bottom: 0;
 }
 
 
@@ -400,7 +420,29 @@ div.one.card{
     background-color: var(--bgcard);
     border-radius: 10px;
 
+}
 
+.avatar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 3em 0 5.5em 0;
+}
+
+img.rounded-circle{
+    margin-left: 4em;
+}
+
+p.text-white.mx-auto.display-4{
+    font-size: 2rem;
+}
+
+.center{
+    text-align: center;
+}
+
+div.center.pl-5{
+    margin-left: 32em;
 }
 
 @media screen and (min-width: 1400px){
@@ -471,6 +513,19 @@ div.one.card{
         bottom: 0;
     }
 
+    main{
+        margin-block-end: 8em;
+    }
+
+    img.homeimg{
+        top:0;
+    }
+
+    .h1{
+    text-align: center;
+    padding-top: 1em;
+    }
+
     nav {
         background-color: var(--background);
         border-top: 1px solid var(--separator);
@@ -492,11 +547,11 @@ div.one.card{
     }
 
     .calendar::before {
-        content : url("https://i.postimg.cc/fWm31ycS/calendar-sm.png");
+        content : url("/assets/images/calendar-sm.png");
     }
 
     .top::before {
-        content: url("https://i.postimg.cc/g2DtsGSf/star-sm.png");
+        content: url("/assets/images/star-sm.png");
     }
 
     .space-home{
@@ -507,16 +562,27 @@ div.one.card{
     }
 
     .home::before {
-        content: url("https://i.postimg.cc/Fz40wL1G/home-sm-copie.png");
+        content: url("/assets/images/home-sm.png");
 
     }
     .discover::before {
-        content: url("https://i.postimg.cc/tJknfvKC/dicover-sm.png");
+        content: url("/assets/images/dicover-sm.png");
     }
 
-    .deconnexion::before,
-    .connexion::before {
-        content: url("https://i.postimg.cc/kg0Gjd2v/user-sm.png");
+    .profil::before {
+        content: url("/assets/images/user-sm.png");
+    }
+
+    i.fas.fa-user{
+        display: none;
+    }
+
+    .connexion::before{
+        content: url("/assets/images/lock.png");
+    }
+
+    .deconnexion::before{
+        content: url("/assets/images/unlock.png");
     }
 
     .navbar-nav{
@@ -524,6 +590,10 @@ div.one.card{
     }
 
     .space{
+        padding-right: 3em;
+    }
+
+    .space-user{
         padding-right: 3em;
     }
 
@@ -535,5 +605,19 @@ div.one.card{
     }
     a.none{
         top: 250px;
+    }
+
+    div.center.pl-5{
+        margin-left: 4em;
+    }
+
+    img.rounded-circle{
+        margin-left: 0.5em;
+    }
+    footer{
+        display: none;
+    }
+    hr.hr{
+        display: none;
     }
 }
