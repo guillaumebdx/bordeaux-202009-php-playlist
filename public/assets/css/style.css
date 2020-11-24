@@ -144,14 +144,6 @@ li.nav-item.space-home {
     content: "Explorer";
 }
 
-.connexion::before {
-    content: "Connexion";
-}
-
-.deconnexion::before {
-    content: "Déconnexion";
-}
-
 h2,
 h4
 {
@@ -162,7 +154,7 @@ h4
 }
 
 h3 {
-    text-align: center;
+    /*text-align: center;*/
     color: white;
 }
 input.input-with-post-icon datepicker{
@@ -245,10 +237,7 @@ button:active .btn-grad {
     font-family: 'Raleway', sans-serif;
     color: var(--blue);
 }
-.footer-flex{
-    display: flex;
-    align-content: center;
-}
+
 .fa-github{
     color: white;
 }
@@ -271,6 +260,7 @@ button:active .btn-grad {
 .flex {
     display: flex;
     align-items: center;
+    margin-bottom: auto;
 }
 
 .fa-arrow-left{
@@ -305,7 +295,6 @@ h6.text-secondary{
 
 .likecounter{
     color: white;
-
 }
 
 div.video{
@@ -319,7 +308,6 @@ div.video{
     margin-top:120px !important;
 }
 
-
 .title-addPlay{
     position: center;
     margin: 100px 0 0 110px;
@@ -329,7 +317,6 @@ div.video{
     font-size: 73.87px;
     line-height: 87px;
     color: #EE0382;
-
 }
 
 .button-addPlay{
@@ -338,17 +325,16 @@ div.video{
     display: flex;
     justify-content: center;
     min-height: 15vh;
+    align-items: center;
 }
 
-
-
 .container-card .card-play .box{
-    transition: 0.5s;
+    transition: 0.9s;
 }
 .container-card .card-play .box.vidBx{
     position: relative;
     z-index: 1;
-    transform: translateY(30px);
+    transform: translateY(40px);
 }
 
 .container-card .card-play .box.vidBx .content iframe{
@@ -359,27 +345,33 @@ div.video{
 
 .container-card .card-play .box.contentBx{
     position: relative;
+    width: 99.9%;
     background: #FFF;
     padding: 20px;
     display: flex;
     box-sizing: border-box;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-    transform: translateY(-50px);
+    transform: translateY(-100px);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
 .container-card .card-play:hover .box.contentBx{
-    transform: translateY(38%);
+    transform: translateY(30%);
 }
 .container-card .card-play .box.contentBx .content {
-    margin: 0;
     padding: 0;
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }
 .box.contentBx .content{
     width: 100%;
 }
+
+.overlay {
+    margin: 6px 0 -30px -12px;
+}
+
 
 .container-card .card-play .box.contentBx .content .like-dislike-alignement{
     padding-top: 0;
@@ -397,6 +389,14 @@ div.one.card{
     background-color: var(--bgcard);
     border-radius: 10px;
 
+
+}
+
+.avatar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 3em 0 5.5em 0;
 
 }
 

@@ -34,11 +34,17 @@
                 </li>
                 {% if session.user %}
                     <li class="nav-item">
-                        <a class="nav-link deconnexion" href="/user/disconnect"></a>
+                        <a class="nav-link" href="/user/showProfil">
+                        <i class="fas fa-user"></i>
+                            </a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link deconnexion" href="/user/disconnect">Déconnexion</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link connexion" href="/user/connect"></a>
+                        <a class="nav-link connexion" href="/user/connect">Connexion</a>
                     </li>
                 {% endif %}
             </ul>
