@@ -58,6 +58,7 @@ class UserController extends AbstractController
                         $userData ['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
                         $userId = $userManager->createUser($userData);
                         header('Location: /');
+                        exit();
                     } else {
                         $userData ['pseudo'] = $_POST['pseudo'];
                         $userData ['email'] = $_POST['email'];
@@ -134,6 +135,17 @@ class UserController extends AbstractController
             'tracks' => $tracks,
             'pseudo' => $pseudo,
         ]);
+    }
 
+    public function showProfil()
+    {
+        $id = $_SESSION['user']['id'];
+        $userManager = new UserManager();
+        $tracks = $userManager->selectAllTracksByProfil($id);
+        $pseudo = $tracks[0]['pseudo'];
+        return $this->twig->render('User/profile.html.twig', [
+            'tracks' => $tracks,
+            'pseudo' => $pseudo,
+        ]);
     }
 }

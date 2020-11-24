@@ -39,6 +39,11 @@ main{
     margin-inline-end: 1.6em;
 }
 
+.flex {
+    display: flex;
+    align-items: center;
+}
+
 h6 {
     font-size: 1.1rem;
 }
@@ -142,14 +147,6 @@ li.nav-item.space-home {
     content: "Explorer";
 }
 
-.connexion::before {
-    content: "Connexion";
-}
-
-.deconnexion::before {
-    content: "Déconnexion";
-}
-
 h2,
 h4
 {
@@ -160,7 +157,7 @@ h4
 }
 
 h3 {
-    text-align: center;
+    /*text-align: center;*/
     color: white;
 }
 input.input-with-post-icon datepicker{
@@ -243,10 +240,7 @@ button:active .btn-grad {
     font-family: 'Raleway', sans-serif;
     color: var(--blue);
 }
-.footer-flex{
-    display: flex;
-    align-content: center;
-}
+
 .fa-github{
     color: white;
 }
@@ -266,10 +260,6 @@ button:active .btn-grad {
     color: #D40086;
 }
 
-.flex {
-    display: flex;
-    align-items: center;
-}
 
 .fa-arrow-left{
     color: white;
@@ -336,6 +326,7 @@ div.video{
     display: flex;
     justify-content: center;
     min-height: 15vh;
+    align-items: center;
 }
 
 
@@ -390,6 +381,14 @@ div.embed-responsive.embed-responsive-16by9{
 .row{
     margin-right: 0;
     margin-left: 0;
+}
+
+.avatar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 3em 0 5.5em 0;
+
 }
 
 @media screen and (min-width: 1400px){
