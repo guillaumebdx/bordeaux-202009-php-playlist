@@ -9,6 +9,8 @@
     --wcs: #F76B6B;
     --red: #B80036;
     --grey: #7c7b7b;
+    --bgcard: #262525;
+
 }
 
 @font-face {
@@ -46,7 +48,7 @@ h6 {
 img.homeimg{
     width: 100%;
     position: absolute;
-    z-index: 1;
+    z-index: -5;
     top:2em;
 
 }
@@ -146,6 +148,10 @@ li.nav-item.space-home {
     content: "Connexion";
 }
 
+.deconnexion::before {
+    content: "Déconnexion";
+}
+
 h2,
 h4
 {
@@ -155,6 +161,23 @@ h4
     -webkit-text-fill-color: transparent;
 }
 
+h3 {
+    text-align: center;
+    color: white;
+}
+input.input-with-post-icon datepicker{
+    color: white;
+    background-color: white;
+}
+input.form-control {
+    margin-left: 33%;
+    margin-right: 33%;
+    width: 33%;
+    background-color: #191919;
+    color: whitesmoke;
+    border-style: none;
+    outline: none;
+}
 label[for=title],
 label[for=artist],
 label[for=url],
@@ -169,6 +192,7 @@ form {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+
 }
 
 .container-form, .col-md-5 .col-md-12 {
@@ -372,6 +396,12 @@ div.embed-responsive.embed-responsive-16by9{
     margin-right: 0;
     margin-left: 0;
 }
+div.one.card{
+    background-color: var(--bgcard);
+    border-radius: 10px;
+
+
+}
 
 @media screen and (min-width: 1400px){
     nav li a{
@@ -484,6 +514,7 @@ div.embed-responsive.embed-responsive-16by9{
         content: url("https://i.postimg.cc/tJknfvKC/dicover-sm.png");
     }
 
+    .deconnexion::before,
     .connexion::before {
         content: url("https://i.postimg.cc/kg0Gjd2v/user-sm.png");
     }

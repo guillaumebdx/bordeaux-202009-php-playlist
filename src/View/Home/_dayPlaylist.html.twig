@@ -1,6 +1,8 @@
 {% block content %}
 
-    <?php die; ?>
+    {% if session.error %}
+        <h3>{{ session.error }}</h3>
+    {% endif %}
     <div class="button-addPlay">
         {% if session.user %}
             <button type="button" class="btn-grad btn-primary" data-toggle="modal" data-target="#add_data_Modal" >Ajouter un morceau à la playlist</button>
@@ -8,7 +10,6 @@
             <a href="/User/connect" class="btn-grad btn-primary" role="button">Ajouter un morceau à la playlist</a>
         {% endif %}
     </div>
-
     <div class="modal fade" id="add_data_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -27,10 +28,11 @@
 
     <div class="dayPlaylistTitle text-white">
         {% if playlist.date %}
-        <h1>Playlist du {{ playlist.date }}</h1>
+        <h1>Playlist du {{ playlist.date|date("d-m-Y") }}</h1>
         {% endif %}
     </div>
             <div class="row m-6 container-card">
+
 
                 {% for track in tracks %}
 
@@ -48,8 +50,14 @@
                                 <div class="like-dislike-alignement">
                                 <div>
                                     <form class ="flex" action="/track/addlike/{{ track.id }}" method="POST">
+                                        {% if session %}
                                         <i id="heart" class="far fa-heart fa-lg mr-2" data-nblike="{{ track.nblike }}" data-trackid="{{ track.id }}" ></i>
-                                            <div id="likecounter-{{ track.id }}">
+                                        {% elseif track.nblike == 0 %}
+                                            <p></p>
+                                        {% else  %}
+                                            <i id="heart" class="fas fa-heart fa-lg mr-2" ></i>
+                                        {% endif %}
+                                        <div id="likecounter-{{ track.id }}">
 
                                                 {% if track.nblike == 0 %}
                                                     <p></p>

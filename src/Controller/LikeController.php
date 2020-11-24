@@ -14,23 +14,25 @@ class LikeController extends AbstractController
     public function add()
     {
         $session = $this->twig->addGlobal('like', $_SESSION);
-        $json = file_get_contents('php://input');
-        $jsonData = json_decode($json, true);
-        $nblike = $jsonData['like'];
-        $trackId = $jsonData['trackId'];
-        $trackManager = new TrackManager();
-        $track = $trackManager->selectOneById($trackId);
-        $nbLikeAfterClick = $nblike + 1;
-        $trackManager->addLike($trackId, $nbLikeAfterClick);
+        $this->checkConnexion();
 
+            $json = file_get_contents('php://input');
+            $jsonData = json_decode($json, true);
+            $nblike = $jsonData['like'];
+            $trackId = $jsonData['trackId'];
+            $trackManager = new TrackManager();
+            $track = $trackManager->selectOneById($trackId);
 
-        $response = [
-            'status' => 'success',
-            'like' => $nblike,
-            'after' => $nbLikeAfterClick,
-            'trackId' => $trackId,
+            $trackManager->addLike($trackId, $nbLikeAfterClick);
 
-        ];
-        return json_encode($response);
-    }
+            $response = [
+                'status' => 'success',
+                'like' => $nblike,
+                'after' => $nbLikeAfterClick,
+                'trackId' => $trackId,
+
+            ];
+            return json_encode($response);
+        }
+
 }

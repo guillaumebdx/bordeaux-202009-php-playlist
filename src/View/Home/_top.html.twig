@@ -1,6 +1,5 @@
 {% extends 'layout.html.twig' %}
 
-
 {% block content %}
     <div id="top">
         <h1 class="text-white font-weight-bold mb-5">Titre les plus aimés</h1>
@@ -18,7 +17,12 @@
                     <h6 class="mt-4 mb-5 text-white">{{ track.title }} - {{ track.artist }} </h6>
                     <div>
                         <form class ="flex" action="/track/addlike/{{ track.id }}" method="POST">
+                            {% if session %}
                             <i id="heart" class="far fa-heart fa-lg mr-2" data-nblike="{{ track.nblike }}" data-trackid="{{ track.id }}" ></i>
+                            {% else  %}
+                                <i id="heart" class="fas fa-heart fa-lg mr-2" ></i>
+
+                            {% endif %}
                             <div class="likecounter" id="likecounter-{{ track.id }}">
 
                                 {% if track.nblike == 0 %}
@@ -26,7 +30,6 @@
                                 {% else %}
                                     {{ track.nblike }}
                                 {% endif %}
-
 
                             </div>
                         </form>
