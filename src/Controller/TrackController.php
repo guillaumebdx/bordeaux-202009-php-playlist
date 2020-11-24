@@ -36,8 +36,13 @@ class TrackController extends AbstractController
         $checkData = $check->chekingTrack($todayFormat);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $url = $_POST['url'];
-            $urlPreClean = explode("watch?v=", $url);
-            $urlClean = substr(array_pop($urlPreClean), 0, 11);
+            if (strstr($url, "watch?v=")) {
+                $urlPreClean = explode("watch?v=", $url);
+                $urlClean = substr(array_pop($urlPreClean), 0, 11);
+            } else {
+                $urlPreClean = explode("youtu.be/", $url);
+                $urlClean = substr(array_pop($urlPreClean), 0, 11);
+            }
             foreach ($checkData as $track => $trackid) {
                 if ($trackid['title'] === $_POST['title'] && $trackid['url'] === $urlClean) {
                     $_SESSION['error'] = 'Ta musique existe déjà, mets une autre musique';

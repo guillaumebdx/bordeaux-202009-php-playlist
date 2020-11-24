@@ -1,8 +1,8 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
-<h1>les titre de la playlist sélectionnée</h1>
+    <div style="height: 80px"></div>
+    <h1 class="text-white font-weight-bold mb-5">Sélectionne ta playlist</h1>
     <form action="/playlist/playlistByDay" method="POST">
 
         <input type="date" class="date" name="date"
@@ -45,6 +45,6 @@
         </div>
     </div>
     {% else %}
-        <h1 class="text-white">Sélctione ta playlist</h1>
+
     {% endfor %}
 {% endblock %}
