@@ -41,6 +41,7 @@ class UserController extends AbstractController
                     $errorMessages['pseudo'] = 'Remplir ce champ';
                     $errorMessages['password'] = 'Remplir ce champ';
                 }
+
                 return $this->twig->render('/User/register.html.twig', [
                     'errors' => $errorMessages,
                     'userData' => $userData,
@@ -139,6 +140,7 @@ class UserController extends AbstractController
 
     public function showProfil()
     {
+
         $id = $_SESSION['user']['id'];
         $userManager = new UserManager();
         $tracks = $userManager->selectAllTracksByProfil($id);
