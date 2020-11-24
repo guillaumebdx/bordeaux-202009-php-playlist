@@ -22,7 +22,7 @@ class LikeController extends AbstractController
             $trackId = $jsonData['trackId'];
             $trackManager = new TrackManager();
             $track = $trackManager->selectOneById($trackId);
-            $nbLikeAfterClick = $nblike + 1;
+
             $trackManager->addLike($trackId, $nbLikeAfterClick);
 
             $response = [
