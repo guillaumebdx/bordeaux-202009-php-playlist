@@ -18,8 +18,11 @@ class PlaylistController extends AbstractController
             $datePlaylist = $playlistManager->chekingTrack($date);
         }
 
+        $date = new \DateTime();
+        $date = $date->format('Y-m-d');
         return $this->twig->render('/Home/selectDayPlaylist.html.twig', [
             'tracks' => $datePlaylist,
+            'today'   => $date,
         ]);
     }
 }
