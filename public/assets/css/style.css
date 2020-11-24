@@ -144,14 +144,6 @@ li.nav-item.space-home {
     content: "Explorer";
 }
 
-.connexion::before {
-    content: "Connexion";
-}
-
-.deconnexion::before {
-    content: "Déconnexion";
-}
-
 h2,
 h4
 {
@@ -162,7 +154,7 @@ h4
 }
 
 h3 {
-    text-align: center;
+    /*text-align: center;*/
     color: white;
 }
 input.input-with-post-icon datepicker{
@@ -245,10 +237,7 @@ button:active .btn-grad {
     font-family: 'Raleway', sans-serif;
     color: var(--blue);
 }
-.footer-flex{
-    display: flex;
-    align-content: center;
-}
+
 .fa-github{
     color: white;
 }
@@ -400,6 +389,14 @@ div.one.card{
     background-color: var(--bgcard);
     border-radius: 10px;
 
+
+}
+
+.avatar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 3em 0 5.5em 0;
 
 }
 
