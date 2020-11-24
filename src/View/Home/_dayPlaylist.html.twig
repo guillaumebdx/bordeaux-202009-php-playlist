@@ -1,7 +1,12 @@
 {% block content %}
 
+    <?php die; ?>
     <div class="button-addPlay">
-        <button type="button" class="btn-grad btn-primary" data-toggle="modal" data-target="#add_data_Modal" >Ajouter un morceau à la playlist</button>
+        {% if session.user %}
+            <button type="button" class="btn-grad btn-primary" data-toggle="modal" data-target="#add_data_Modal" >Ajouter un morceau à la playlist</button>
+        {% else %}
+            <a href="/User/connect" class="btn-grad btn-primary" role="button">Ajouter un morceau à la playlist</a>
+        {% endif %}
     </div>
 
     <div class="modal fade" id="add_data_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -51,11 +56,17 @@
                                                 {% else %}
                                                     {{ track.nblike }}
                                                 {% endif %}
-
-
                                             </div>
                                     </form>
                                 </div>
+                                    <div class="overlay">
+                                        {% if session.user.is_admin == '1'  %}
+                                            <form action="track/delete" method="post">
+                                                <input type="hidden" name="delete_id" value="{{ track.id }}">
+                                                <button type="submit" name="delete_btn" class="btn btn" style="color: #D40086"> <i class="fas fa-trash-alt fa-lg"></i></button>
+                                            </form>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -67,3 +78,4 @@
             </div>
         </div>
 {% endblock %}
+

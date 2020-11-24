@@ -68,4 +68,15 @@ class TrackController extends AbstractController
             'tracks' => $tracks
         ]);
     }
+
+    public function delete()
+    {
+        if (isset($_POST['delete_btn'])) {
+            $id = $_POST['delete_id'];
+            $tracks = new TrackManager();
+            $tracks->delete($id);
+            header('Location:/ ');
+            exit();
+        }
+    }
 }
