@@ -132,6 +132,7 @@ class UserController extends AbstractController
 
     public function showProfil()
     {
+
         $id = $_SESSION['user']['id'];
         $userManager = new UserManager();
         $userManager->selectUserTotalTracksById();
