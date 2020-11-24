@@ -21,58 +21,53 @@ class UserController extends AbstractController
     public function add()
     {
         $userManager = new UserManager();
-        $users = $userManager->selectAllUsers();
-        foreach ($users as $userData => $userPseudo) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userData = [];
             $errorMessages = [];
             $formValidator = new FormValidator();
             $formValidator->setFields($_POST);
             $formValidator->checkField();
             $errorMessages = $formValidator->getErrors();
-            if ($userPseudo['pseudo'] === $_POST['pseudo'] || $userPseudo['email'] === $_POST['email']) {
-                $errorMessages['alreadyRegistered'] = 'Le compte existe déjà, recommence';
-                if ($userPseudo['pseudo'] !== $_POST['pseudo']) {
-                    $userData['pseudo'] = $_POST['pseudo'];
-                    $errorMessages['email'] = 'Remplir ce champ';
-                    $errorMessages['password'] = 'Remplir ce champ';
-                }
-                if ($userPseudo['email'] !== $_POST['email']) {
-                    $userData['email'] = $_POST['email'];
-                    $errorMessages['pseudo'] = 'Remplir ce champ';
-                    $errorMessages['password'] = 'Remplir ce champ';
-                }
+            $pseudoInDb = $userManager->selectOneByPseudo($_POST['pseudo']);
+            $emailInDb = $userManager->selectOneByEmail($_POST['email']);
+            if ($pseudoInDb && $emailInDb) {
+                $errorMessages['alreadyRegistered'] = 'Le compte existe déjà';
+                return $this->twig->render('/User/register.html.twig', [
+                    'errors' => $errorMessages,
+                ]);
+            }
+            if ($pseudoInDb) {
+                $errorMessages['alreadyRegistered'] = 'Le compte existe déjà, change ton pseudo';
+                $userData ['email'] = $_POST['email'];
+                return $this->twig->render('/User/register.html.twig', [
+                    'errors' => $errorMessages,
+                    'userData' => $userData,
+                    ]);
+            }
+            if ($emailInDb) {
+                $errorMessages['alreadyRegistered'] = 'Le compte existe déjà, change ton email';
+                $userData ['pseudo'] = $_POST['pseudo'];
                 return $this->twig->render('/User/register.html.twig', [
                     'errors' => $errorMessages,
                     'userData' => $userData,
                 ]);
+            }
+            if (empty($errorMessages)) {
+                $userManager = new UserManager();
+                $userData ['pseudo'] = $_POST['pseudo'];
+                $userData ['email'] = $_POST['email'];
+                $userData ['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+                $userManager->createUser($userData);
+                $this->check();
             } else {
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $formValidator = new FormValidator();
-                    $formValidator->setFields($_POST);
-                    $formValidator->checkField();
-                    $errorMessages = $formValidator->getErrors();
-                    if (empty($errorMessages)) {
-                        $userManager = new UserManager();
-                        $userData ['pseudo'] = $_POST['pseudo'];
-                        $userData ['email'] = $_POST['email'];
-                        $userData ['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-                        $userId = $userManager->createUser($userData);
-                        header('Location: /');
-                        exit();
-                    } else {
-                        $userData ['pseudo'] = $_POST['pseudo'];
-                        $userData ['email'] = $_POST['email'];
-                        $userData ['password'] = $_POST['password'];
-
-                        return $this->twig->render('/User/register.html.twig', [
-                            'errors' => $errorMessages,
-                            'userData' => $userData,
-                        ]);
-                    }
-                }
+                $userData ['pseudo'] = $_POST['pseudo'];
+                $userData ['email'] = $_POST['email'];
+                return $this->twig->render('/User/register.html.twig', [
+                   'errors' => $errorMessages,
+                   'userData' => $userData,
+                ]);
             }
         }
-        $this->check();
     }
 
     public function check()
@@ -87,8 +82,6 @@ class UserController extends AbstractController
 
             if (!empty($errorMessages)) {
                 $userData['pseudo'] = $_POST['pseudo'];
-                $userData['password'] = $_POST['password'];
-
                 return $this->twig->render('/User/connect.html.twig', [
                     'errors' => $errorMessages,
                     'userData' => $userData,
@@ -141,16 +134,16 @@ class UserController extends AbstractController
     {
         $id = $_SESSION['user']['id'];
         $userManager = new UserManager();
-        $userTotalTracks = $userManager->selectUserTotalTracksById();
+        $userManager->selectUserTotalTracksById();
         $tracks = $userManager->selectAllTracksByProfil($id);
         $pseudo = $_SESSION['user']['pseudo'];
         $nbtracks = 0;
-        foreach($tracks as $nbUserTrack) {
+        foreach ($tracks as $nbUserTrack) {
             $nbtracks += 1;
         }
-        if(!empty($tracks)){
+        if (!empty($tracks)) {
             $pseudo = $tracks[0]['pseudo'];
-            $error =[];
+            $error = [];
         } else {
             $_SESSION['error'] = "Tu n'as pas encore ajouté de musique... 😔";
             $error = $_SESSION['error'];
