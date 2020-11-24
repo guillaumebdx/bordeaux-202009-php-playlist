@@ -1,6 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+    <div style="height: 80px"></div>
     {% if errors.alreadyRegistered %}
         <h4>{{ errors.alreadyRegistered }}</h4>
     {% else %}
@@ -11,7 +12,7 @@
         <div class="container-sm">
             <div class="row">
                 <div class="col-md-6">
-                    <label for="pseudo" class="mt-5 {{ errors.pseudo ? 'is-invalid' : '' }} ">Ton pseudo</label><br>
+                    <label for="pseudo" class="mt-5 {{ errors.pseudo ? 'is-invalid' : '' }} ">Pseudo</label><br>
                     <input class="w-100" type="text" value="{{ user.pseudo ?? userData.pseudo }}" name="pseudo" id="pseudo" placeholder="Shakira">
                     {% if errors.pseudo %}
                     <div class="invalid-feedback">
@@ -20,7 +21,7 @@
                     {% endif %}
                 </div>
                 <div class="col-md-6">
-                    <label for="password" class="mt-5 {{ errors.password ? 'is-invalid' : '' }} ">Ton mot de passe</label><br>
+                    <label for="password" class="mt-5 {{ errors.password ? 'is-invalid' : '' }} ">Mot de passe</label><br>
                     <input class="w-100" type="password" value="{{ user.password }}" name="password" id="password" placeholder="*****" >
                     {% if errors.password %}
                         <div class="invalid-feedback">
@@ -29,7 +30,7 @@
                     {% endif %}
                 </div>
                 <div class="col-md-12">
-                    <label for="email" class="mt-5 {{ errors.email ? 'is-invalid' : '' }} ">ici ton adresse email</label><br>
+                    <label for="email" class="mt-5 {{ errors.email ? 'is-invalid' : '' }} ">Email</label><br>
                     <input class="w-100" type="email" value="{{ user.email ?? userData.email }}" name="email" id="email" placeholder="Shakira@yahoo.com" >
                     {% if errors.email %}
                         <div class="invalid-feedback">
@@ -41,8 +42,6 @@
         </div>
         <div class="mb-5">
         <button class="btn-grad mx-auto" type="submit">Envoyer</button>
-        </div>
-        </div>
         </div>
     </form>
     <h6 class="text-secondary pt-5">Déjà un compte ?
