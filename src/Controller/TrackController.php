@@ -10,6 +10,8 @@ use App\Model\TrackManager;
 
 class TrackController extends AbstractController
 {
+    const NBTRACKSMAX = 10;
+
     /**
      * Display item creation page
      *
@@ -22,14 +24,14 @@ class TrackController extends AbstractController
     public function add()
     {
         $this->checkConnexion();
-        $nbTracksMax = 10;
+        $nbTracksMax = self::NBTRACKSMAX;
         $today = new \DateTime();
         $todayFormat = $today->format('Y-m-d');
         $check = new PlaylistManager();
         $nbTracks = $check->nbTrackofTheDay($todayFormat);
         $nbTracks = (int)$nbTracks['nb_track'];
         if ($nbTracks >= $nbTracksMax) {
-            $_SESSION['error'] = 'Les ' . $nbTracksMax . ' chansons du jour ont déjà été postés';
+            $_SESSION['error'] = 'Les ' . $nbTracksMax . ' chansons du jour ont déjà été postées';
             header('Location: / ');
             exit();
         }
