@@ -31,6 +31,7 @@ class TrackController extends AbstractController
         if ($nbTracks >= $nbTracksMax) {
             $_SESSION['error'] = 'Les ' . $nbTracksMax . ' chansons du jour ont déjà été postés';
             header('Location: / ');
+            exit();
         }
         $checkData = $check->chekingTrack($todayFormat);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
