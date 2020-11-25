@@ -10,6 +10,8 @@ use App\Model\TrackManager;
 
 class TrackController extends AbstractController
 {
+    const NBTRACKSMAX = 10;
+
     /**
      * Display item creation page
      *
@@ -22,26 +24,32 @@ class TrackController extends AbstractController
     public function add()
     {
         $this->checkConnexion();
-        $nbTracksMax = 10;
+        $nbTracksMax = self::NBTRACKSMAX;
         $today = new \DateTime();
         $todayFormat = $today->format('Y-m-d');
         $check = new PlaylistManager();
         $nbTracks = $check->nbTrackofTheDay($todayFormat);
         $nbTracks = (int)$nbTracks['nb_track'];
         if ($nbTracks >= $nbTracksMax) {
-            $_SESSION['error'] = 'Les ' . $nbTracksMax . ' chansons du jour ont déjà été postés';
+            $_SESSION['error'] = 'Les ' . $nbTracksMax . ' chansons du jour ont déjà été postées';
             header('Location: / ');
             exit();
         }
         $checkData = $check->chekingTrack($todayFormat);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $url = $_POST['url'];
-            if (strstr($url, "watch?v=")) {
-                $urlPreClean = explode("watch?v=", $url);
-                $urlClean = substr(array_pop($urlPreClean), 0, 11);
+            if (strstr($url, "youtube.com/watch?v=") || strstr($url, "youtu.be/")) {
+                if (strstr($url, "youtube.com/watch?v=")) {
+                    $urlPreClean = explode("watch?v=", $url);
+                    $urlClean = substr(array_pop($urlPreClean), 0, 11);
+                } else {
+                    $urlPreClean = explode("youtu.be/", $url);
+                    $urlClean = substr(array_pop($urlPreClean), 0, 11);
+                }
             } else {
-                $urlPreClean = explode("youtu.be/", $url);
-                $urlClean = substr(array_pop($urlPreClean), 0, 11);
+                $_SESSION['error'] = "Ton url n'est pas valide, utilise un lien Youtube";
+                header('Location: /');
+                exit();
             }
             foreach ($checkData as $track => $trackid) {
                 if ($trackid['title'] === $_POST['title'] && $trackid['url'] === $urlClean) {
@@ -73,7 +81,6 @@ class TrackController extends AbstractController
             header('Location: /');
             exit();
         }
-
     }
 
     public function top()
@@ -96,5 +103,4 @@ class TrackController extends AbstractController
             exit();
         }
     }
-
 }
