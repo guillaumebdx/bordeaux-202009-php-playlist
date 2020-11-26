@@ -4,9 +4,9 @@
     {% endif %}
     <div class="button-addPlay">
         {% if session.user %}
-            <button type="button" class="btn-grad btn-primary" data-toggle="modal" data-target="#add_data_Modal" >Ajouter un morceau à la playlist</button>
+            <button type="button" class="btn-grad btn-primary" data-toggle="modal" data-target="#add_data_Modal" >Ajouter un morçeau à la playlist</button>
         {% else %}
-            <a href="/User/connect" class="btn-grad btn-primary" role="button">Ajouter un morceau à la playlist</a>
+            <a href="/User/connect" class="btn-grad btn-primary" role="button">Ajouter un morçeau à la playlist</a>
         {% endif %}
     </div>
     <div class="modal fade" id="add_data_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -48,7 +48,7 @@
                             <div class="content">
 
                                 <div class="title-card" >{{ track.title }} - {{ track.artist }}</div>
-                                <h6 class="mt-4 mb-5 text-blue">posté par {{ track.pseudo }} </h6>
+                                <h6 class="mt-4 mb-5 text-blue">postée par {{ track.pseudo }} </h6>
                                 <div class="like-dislike-alignement">
                                 <div>
                                     <form class ="flex" action="/track/addlike/{{ track.id }}" method="POST">
