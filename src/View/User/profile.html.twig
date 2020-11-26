@@ -1,28 +1,23 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
     <h3 class="text-white text-center mb-5">Profil</h3>
         <div class="avatar">
             <img class="rounded-circle" src="https://i.pravatar.cc/225" alt="photo de profil">
-            <h3 class="ml-5">{{ pseudo }}</h3>
-            <div class="center pl-5">
+            <h3 class="m5">{{ pseudo }}</h3>
+            <div class="center p5">
                 <h5 class="text-danger">{{ nbtrack }}</h5>
                 <h5 class="text-white"> Musiques </h5>
                 <h5 class="text-white "> ajoutées </h5>
             </div>
         </div>
-
-    <h3 class="ml-5 mt-5">Mes ajouts</h3>
+    <h3 class="m5">Mes ajouts</h3>
     <div class="row my-5">
-
         {% if error %}
          <p class="text-white mx-auto display-4"> {{error}} </p>
         {% endif %}
         {% for track in tracks %}
-
             <div class="col-xl-3 col-lg-4 col-md-12">
-
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item rounded-5" src="https://www.youtube.com/embed/{{ track.url }}?enablejsapi=1&html5=1.?modestbranding=1" style="height: 101%"
                             allowfullscreen></iframe>
@@ -31,6 +26,9 @@
                     <h6 class="mt-4 mb-5 text-white">{{ track.title }} - {{ track.artist }} </h6>
                     <div>
                         <form class ="flex" action="/track/addlike/{{ track.id }}" method="POST">
+                            {% if track.id in session.like %}
+                            <i id="heart" class="fas fa-heart fa-lg mr-2" ></i> {{ track.nblike }}
+                            {% else %}
                             {% if session %}
                                 <i id="heart" class="far fa-heart fa-lg mr-2" data-nblike="{{ track.nblike }}" data-trackid="{{ track.id }}" ></i>
                             {% else  %}
@@ -44,27 +42,13 @@
                                 {% else %}
                                     {{ track.nblike }}
                                 {% endif %}
-
                             </div>
+                            {% endif %}
                         </form>
                     </div>
                 </div>
-
-
             </div>
-
-
         {% endfor %}
-
+        </div>
     </div>
-    </div>
-
-
-
-
-
-
-
-
-
 {% endblock %}

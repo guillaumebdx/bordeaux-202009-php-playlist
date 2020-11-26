@@ -37,7 +37,7 @@ class TrackManager extends AbstractManager
      */
     public function selectTracksByDay($idPlaylist)
     {
-        return $this->pdo->query("SELECT t.id, t.title, t.artist, t.url, t.nblike, t.playlist_id, u.pseudo 
+        return $this->pdo->query("SELECT t.id, t.title, t.artist, t.url, t.nblike, t.playlist_id, u.id AS id_pseudo, u.pseudo 
                 FROM " . self::TABLE . " t
                 JOIN " . UserManager::TABLE . " u ON t.user_id=u.id
                 WHERE t.playlist_id= '$idPlaylist'")->fetchAll();
@@ -48,7 +48,7 @@ class TrackManager extends AbstractManager
      */
     public function selectTracksLike()
     {
-        return $this->pdo->query('SELECT t.id, t.title, t.artist, t.url, t.nblike, p.date, u.pseudo 
+        return $this->pdo->query('SELECT t.id, t.title, t.artist, t.url, t.nblike, p.date, u.id AS id_pseudo, u.pseudo 
             FROM ' . $this->table . ' t 
             JOIN ' . UserManager::TABLE . ' u ON t.user_id=u.id
             JOIN ' . PlaylistManager::TABLE . ' p ON t.playlist_id=p.id

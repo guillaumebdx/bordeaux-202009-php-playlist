@@ -47,7 +47,7 @@ class PlaylistManager extends AbstractManager
     public function checkingTrack($date)
     {
         $statement = $this->pdo->prepare(
-            "SELECT t.title, t.artist, t.url, t.playlist_id, t.user_id, u.pseudo  
+            "SELECT t.title, t.artist, t.url, t.playlist_id, t.nblike, t.user_id, u.pseudo  
                     FROM " . TrackManager::TABLE . " t 
                     JOIN " . self::TABLE . " p ON t.playlist_id = p.id 
                     JOIN " . UserManager::TABLE . " u ON t.user_id=u.id
