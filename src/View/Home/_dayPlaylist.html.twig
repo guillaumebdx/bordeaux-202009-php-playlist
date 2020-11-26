@@ -34,6 +34,7 @@
             <div class="row m-6 container-card">
 
 
+
                 {% for track in tracks %}
 
                     <div class="col-lg-4 col-md-6 card-play mx-auto">
@@ -47,6 +48,7 @@
                             <div class="content">
 
                                 <div class="title-card" >{{ track.title }} - {{ track.artist }}</div>
+                                <h6 class="mt-4 mb-5 text-blue">posté par {{ track.pseudo }} </h6>
                                 <div class="like-dislike-alignement">
                                 <div>
                                     <form class ="flex" action="/track/addlike/{{ track.id }}" method="POST">

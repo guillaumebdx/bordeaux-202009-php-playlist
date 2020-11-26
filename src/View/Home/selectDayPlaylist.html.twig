@@ -26,6 +26,7 @@
             <div class="content">
 
                 <div class="title-card" >{{ track.title }} - {{ track.artist }}</div>
+                <div class="title-card" >posté par {{ track.pseudo }}</div>
                 <div class="like-dislike-alignement">
                     <div>
                         <form class ="flex" action="/track/addlike/{{ track.id }}" method="POST">

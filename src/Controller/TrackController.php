@@ -35,7 +35,7 @@ class TrackController extends AbstractController
             header('Location: / ');
             exit();
         }
-        $checkData = $check->chekingTrack($todayFormat);
+        $checkData = $check->checkingTrack($todayFormat);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $url = $_POST['url'];
             if (strstr($url, "youtube.com/watch?v=") || strstr($url, "youtu.be/")) {
