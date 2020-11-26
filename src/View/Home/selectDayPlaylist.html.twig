@@ -30,7 +30,13 @@
                 <div class="like-dislike-alignement">
                     <div>
                         <form class ="flex" action="/track/addlike/{{ track.id }}" method="POST">
-                            <i id="heart" class="far fa-heart fa-lg mr-2" data-nblike="{{ track.nblike }}" data-trackid="{{ track.id }}" ></i>
+                            {% if session %}
+                                <i id="heart" class="far fa-heart fa-lg mr-2" data-nblike="{{ track.nblike }}" data-trackid="{{ track.id }}" ></i>
+                            {% elseif track.nblike == 0 %}
+                                <p></p>
+                            {% else  %}
+                                <i id="heart" class="fas fa-heart fa-lg mr-2" ></i>
+                            {% endif %}
                             <div id="likecounter-{{ track.id }}">
 
                                 {% if track.nblike == 0 %}
@@ -40,6 +46,14 @@
                                 {% endif %}
                             </div>
                         </form>
+                    </div>
+                    <div class="overlay">
+                        {% if session.user.is_admin == '1'  %}
+                            <form action="track/delete" method="post">
+                                <input type="hidden" name="delete_id" value="{{ track.id }}">
+                                <button type="submit" name="delete_btn" class="btn btn" style="color: #D40086"> <i class="fas fa-trash-alt fa-lg"></i></button>
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
             </div>
