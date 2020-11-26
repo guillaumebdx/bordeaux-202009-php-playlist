@@ -7,10 +7,6 @@ namespace App\Model;
 class TrackManager extends AbstractManager
 {
 
-    /**
-     *
-     */
-
     const TABLE = 'track';
 
     /**
@@ -21,11 +17,8 @@ class TrackManager extends AbstractManager
         parent::__construct(self::TABLE);
     }
 
-
     public function insert(array $track): int
     {
-        // prepared request
-
         $statement = $this->pdo->prepare("INSERT INTO " . self::TABLE . " (title, artist, url, playlist_id, user_id, nblike)
          VALUES (:title, :artist, :url, :playlist_id, :user_id, :nblike)");
         $statement->bindValue(':title', $track['title'], \PDO::PARAM_STR);
@@ -39,14 +32,27 @@ class TrackManager extends AbstractManager
         }
     }
 
+    /**
+     * For _dayPlaylist.hmtl.twig
+     */
     public function selectTracksByDay($idPlaylist)
     {
-        return $this->pdo->query("SELECT * FROM  $this->table  WHERE playlist_id= '$idPlaylist'")->fetchAll();
+        return $this->pdo->query("SELECT t.id, t.title, t.artist, t.url, t.nblike, t.playlist_id, u.id AS id_pseudo, u.pseudo 
+                FROM " . self::TABLE . " t
+                JOIN " . UserManager::TABLE . " u ON t.user_id=u.id
+                WHERE t.playlist_id= '$idPlaylist'")->fetchAll();
     }
 
+    /**
+     * For _top.hmtl.twig
+     */
     public function selectTracksLike()
     {
-        return $this->pdo->query("SELECT * FROM  $this->table  ORDER BY nblike DESC LIMIT 10")->fetchAll();
+        return $this->pdo->query('SELECT t.id, t.title, t.artist, t.url, t.nblike, p.date, u.id AS id_pseudo, u.pseudo 
+            FROM ' . $this->table . ' t 
+            JOIN ' . UserManager::TABLE . ' u ON t.user_id=u.id
+            JOIN ' . PlaylistManager::TABLE . ' p ON t.playlist_id=p.id
+            ORDER BY t.nblike DESC LIMIT 10')->fetchAll();
     }
 
     public function addLike($trackId, $nbLike)
@@ -55,7 +61,6 @@ class TrackManager extends AbstractManager
 
         return $statement->execute();
     }
-
 
     public function showLike($trackId)
     {

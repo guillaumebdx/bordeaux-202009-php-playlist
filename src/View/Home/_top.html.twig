@@ -3,9 +3,8 @@
 {% block content %}
     <div style="height: 80px"></div>
     <div id="top">
-        <h1 class="text-white font-weight-bold mb-5">Titre les plus aimés</h1>
+        <h1 class="text-white font-weight-bold mb-5">Titres les plus aimés</h1>
         <div class="row mb-5">
-
             {% for track in tracks %}
 
             <div class="col-xl-3 col-lg-4 col-md-12">
@@ -15,24 +14,28 @@
                             allowfullscreen></iframe>
                 </div>
                 <div class="video">
-                    <h6 class="mt-4 mb-5 text-white">{{ track.title }} - {{ track.artist }} </h6>
+                    <div class="col">
+                    <h6 class="mt-2 mb-1 text-white">{{ track.title }} - {{ track.artist }} </h6>
+                    <a style="text-decoration: none" href="/User/showAllTracksByProfil/{{ track.id_pseudo }}"><h6 class="mt-2 mb-1 text-muted">Postée par {{ track.pseudo }} </h6></a>
+                    </div>
                     <div>
                         <form class ="flex" action="/track/addlike/{{ track.id }}" method="POST">
+                            {% if track.id in session.like %}
+                            <i id="heart" class="fas fa-heart fa-lg mr-3" ></i><p class="mt-3 mr-3 text-white">{{ track.nblike }}</p>
+                            {% else %}
                             {% if session %}
-                            <i id="heart" class="far fa-heart fa-lg mr-2" data-nblike="{{ track.nblike }}" data-trackid="{{ track.id }}" ></i>
+                            <i id="heart" class="far fa-heart fa-lg mr-3" data-nblike="{{ track.nblike }}" data-trackid="{{ track.id }}" ></i>
                             {% else  %}
-                                <i id="heart" class="fas fa-heart fa-lg mr-2" ></i>
-
+                                <i id="heart" class="fas fa-heart fa-lg mr-3" ></i>
                             {% endif %}
-                            <div class="likecounter" id="likecounter-{{ track.id }}">
-
+                            <div class="likecounter text-white" id="likecounter-{{ track.id }}">
                                 {% if track.nblike == 0 %}
                                     <p></p>
                                 {% else %}
-                                    {{ track.nblike }}
+                                    <p class="mt-3 mr-3 text-white">{{ track.nblike }}</p>
                                 {% endif %}
-
                             </div>
+                            {% endif %}
                         </form>
                     </div>
                 </div>

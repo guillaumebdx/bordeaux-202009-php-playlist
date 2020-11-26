@@ -265,7 +265,7 @@ button:active .btn-grad {
 }
 .video{
     font-family: 'Raleway', sans-serif;
-    color: var(--blue);
+    color: white;
 }
 
 .fa-github{
@@ -386,9 +386,15 @@ div.video{
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
+
 .container-card .card-play:hover .box.contentBx{
-    transform: translateY(30%);
+    transform: translateY(20%);
 }
+
+.title-card {
+    margin-bottom: -50px;
+}
+
 .container-card .card-play .box.contentBx .content {
     padding: 0;
     display: flex;
@@ -427,6 +433,14 @@ div.one.card{
     flex-direction: row;
     align-items: center;
     margin: 3em 0 5.5em 0;
+}
+
+.p5{
+    padding-left: 31em;
+}
+
+.m5{
+    margin-left: 3em;
 }
 
 img.rounded-circle{
@@ -494,7 +508,7 @@ div.center.pl-5{
 
 }
 
-@media screen and (min-width: 768px) and (max-width: 849px){
+@media screen and (min-width: 668px) and (max-width: 849px){
     nav .container{
         max-width: 1200px;
     }
@@ -507,7 +521,7 @@ div.center.pl-5{
 
 }
 
-@media screen and (max-width: 767px){
+@media screen and (max-width: 667px){
     .position{
         top : auto;
         bottom: 0;
@@ -554,16 +568,12 @@ div.center.pl-5{
         content: url("/assets/images/star-sm.png");
     }
 
-    .space-home{
-        padding-right: 2.5em;
-    }
     li.nav-item.space-home{
         display: block;
     }
 
     .home::before {
         content: url("/assets/images/home-sm.png");
-
     }
     .discover::before {
         content: url("/assets/images/dicover-sm.png");
@@ -590,11 +600,15 @@ div.center.pl-5{
     }
 
     .space{
-        padding-right: 3em;
+        padding-right: 1.2em;
     }
 
     .space-user{
-        padding-right: 3em;
+        padding-right: 1.2em;
+    }
+
+    .space-home{
+        padding-right: 1.2em;
     }
 
     .footer-flex{
@@ -620,4 +634,25 @@ div.center.pl-5{
     hr.hr{
         display: none;
     }
+
+    .avatar{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navbar{
+        padding: 0;
+    }
+
+    div.center.p5{
+        padding: 0;
+        margin-left: 0;
+        margin-top: 1.5em;
+    }
+
+    h3.m5{
+    margin-left: 0;
+        margin-top: 2em;
+    }
+
 }
