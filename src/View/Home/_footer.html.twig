@@ -7,10 +7,17 @@
                 <li class="list-inline-item">
                     <a href="/User/register" class="text-white mr-5 text-danger">Inscription</a>
                 </li>
+                {% if session.user %}
+                <li class="list-inline-item">
+                    <a href="/User/disconnect" class="text-white ml-2 text-danger">Déconnexion</a>
+                </li>
+                {% else %}
                 <li class="list-inline-item">
                     <a href="/User/connect" class="text-white ml-2 text-danger">Connexion</a>
                 </li>
+                {% endif %}
             </ul>
+
         </div>
 
         <div class="footer-copyright text-center text-muted pb-4">© 2020 Copyright -
@@ -20,7 +27,7 @@
         <div>
             <ul class="list-unstyled list-inline text-center">
                 <li class="list-inline-item">
-                    <a href="https://github.com/yacinemehai/BlasterCloud/graphs/contributors"
+                    <a href="https://github.com/guillaumebdx/bordeaux-202009-php-playlist/graphs/contributors"
                        class="btn-floating btn-lg btn-git" target="_blank">
                         <i class="fab fa-github mr-md-5 mr-3 fa-2x"></i>
                     </a>
