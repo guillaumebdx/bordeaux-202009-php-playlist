@@ -1,6 +1,6 @@
 {% block content %}
     {% if session.error %}
-        <h3>{{ session.error }}</h3>
+        <h3 class="text-white d-flex justify-content-center h1"><b>{{ session.error }}</b></h3>
     {% endif %}
     <div class="button-addPlay">
         {% if session.user %}
@@ -32,26 +32,26 @@
         {% endif %}
     </div>
             <div class="row m-6 container-card">
-
-
-
                 {% for track in tracks %}
 
                     <div class="col-lg-4 col-md-6 card-play mx-auto">
                         <div class="embed-responsive embed-responsive-16by9 z-depth-5 box vidBx">
                             <div class="content">
                                 <iframe class="embed-responsive-item z-depth-5" style="height: 101%" id="video" src="https://www.youtube.com/embed/{{ track.url }}?enablejsapi=1&html5=1.?modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
                             </div>
                         </div>
                         <div class="box contentBx">
                             <div class="content">
 
-                                <div class="title-card" >{{ track.title }} - {{ track.artist }}</div>
-                                <h6 class="mt-4 mb-5 text-blue">postée par {{ track.pseudo }} </h6>
+                                <div class="title-card" >{{ track.title }} - {{ track.artist }}
+                                <a style="text-decoration: none" href="/User/showAllTracksByProfil/{{ track.id_pseudo }}"><h6 class="mt-2 mb-5 text-muted">Postée par <B>{{ track.pseudo }}</B></h6></a>
+                                </div>
                                 <div class="like-dislike-alignement">
                                 <div>
                                     <form class ="flex" action="/track/addlike/{{ track.id }}" method="POST">
+                                        {% if track.id in session.like %}
+                                        <i id="heart" class="fas fa-heart fa-lg mr-2" ></i>{{ track.nblike }}
+                                        {% else %}
                                         {% if session %}
                                         <i id="heart" class="far fa-heart fa-lg mr-2" data-nblike="{{ track.nblike }}" data-trackid="{{ track.id }}" ></i>
                                         {% elseif track.nblike == 0 %}
@@ -67,6 +67,7 @@
                                                     {{ track.nblike }}
                                                 {% endif %}
                                             </div>
+                                        {% endif %}
                                     </form>
                                 </div>
                                     <div class="overlay">

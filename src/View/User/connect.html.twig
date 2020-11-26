@@ -2,8 +2,9 @@
 
 
 {% block content %}
-    <div style="height: 80px"></div>
-    <h2>Connecte-toi</h2>
+    <div style="height: 40px"></div>
+    <h3 class="text-white d-flex justify-content-center">Connecte-toi</h3>
+    <div style="height: 40px"></div>
 
     <form action="/User/check" method="post" >
         <div class="container-sm">
@@ -27,6 +28,9 @@
                     {% endif %}
                 </div>
             </div>
+            {% if errors.alreadyRegistered %}
+                <h3 class="mt-5 text-danger d-flex justify-content-center">{{ errors.alreadyRegistered }}</h3>
+            {% endif %}
         </div>
         <div class="mb-5">
         <button class="btn-grad mx-auto" type="submit">Envoyer</button>

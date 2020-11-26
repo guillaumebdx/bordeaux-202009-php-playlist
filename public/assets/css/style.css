@@ -265,7 +265,7 @@ button:active .btn-grad {
 }
 .video{
     font-family: 'Raleway', sans-serif;
-    color: var(--blue);
+    color: white;
 }
 
 .fa-github{
@@ -386,9 +386,15 @@ div.video{
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
+
 .container-card .card-play:hover .box.contentBx{
-    transform: translateY(30%);
+    transform: translateY(20%);
 }
+
+.title-card {
+    margin-bottom: -50px;
+}
+
 .container-card .card-play .box.contentBx .content {
     padding: 0;
     display: flex;

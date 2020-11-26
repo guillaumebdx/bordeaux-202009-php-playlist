@@ -1,13 +1,9 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div style="height: 80px"></div>
-    {% if errors.alreadyRegistered %}
-        <h4>{{ errors.alreadyRegistered }}</h4>
-    {% else %}
-        <h2>Inscris-toi !</h2>
-    {% endif %}
-
+    <div style="height: 40px"></div>
+    <h3 class="text-white d-flex justify-content-center">Inscris-toi !</h3>
+    <div style="height: 40px"></div>
     <form action="/user/add" method="post">
         <div class="container-sm">
             <div class="row">
@@ -39,6 +35,11 @@
                     {% endif %}
                 </div>
             </div>
+        </div>
+
+        {% if errors.alreadyRegistered %}
+        <h3 class="mt-5 text-danger d-flex justify-content-center">{{ errors.alreadyRegistered }}</h3>
+        {% endif %}
         </div>
         <div class="mb-5">
         <button class="btn-grad mx-auto" type="submit">Envoyer</button>
